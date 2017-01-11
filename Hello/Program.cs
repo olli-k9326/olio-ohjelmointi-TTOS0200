@@ -5,6 +5,7 @@
  9.1.2017
  */
  //ollin demoa tehty
+ // toinen muutos kommentiin asd le lessss.
 namespace Hello2
 {
     class Henkilo {
