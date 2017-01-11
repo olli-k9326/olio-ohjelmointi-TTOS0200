@@ -4,7 +4,7 @@
  Ollin esimmmäinen testiohjelma
  9.1.2017
  */
-
+ //ollin demoa tehty
 namespace Hello2
 {
     class Henkilo {
