@@ -4,44 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace h1_t6
+namespace h1_t11
 {
-    class ht_t6
+    class h1_t11
     {
         static void Main(string[] args)
         {
-            double distance = 0;
-            
-            double gasolinePer100 = 7.02;
-            double gasolineExpLitre = 1.595;
+            int number = 1;   
             bool exit = false;
 
             while (!exit)
             {
-                exit = UserInput(ref distance);     // kysytään matka
+                
+                exit = UserInput(ref number);  // kysytään
                 if (exit) continue;     // pois silmukasta, jos syötteessä esiintyi "exit"
-                GasolineExpence(distance, gasolinePer100, gasolineExpLitre);
+
+                for (int i = 1; i <= number; i++)
+                {
+                    for (int j = 1; j <= i; j++)
+                    {
+                        Console.Write("*");
+                    }
+                    Console.WriteLine();
+                }
+
+
             }
-
-        }
-        static void GasolineExpence(double distance, double gasolinePer100, double gasolineExpLitre)
-        {
-            double gasoline = distance / 100 * gasolinePer100;
-            double expence = gasoline * gasolineExpLitre;
-
-            Console.WriteLine("Bensaa kuluu {0} litraa, kustannus {1} euroa", gasoline.ToString("#.##"), expence.ToString("#.##"));
-
         }
 
-
-        static bool UserInput(ref double number)
+        static bool UserInput(ref int number)
         {
             bool exit = false;
             string input;
 
             while (true)
             {
-                Console.Write("\nAnna matka > ");
+                Console.Write("Anna luku > ");
                 input = Console.ReadLine();                     // käyttäjän syöte
                 if (input == "exit" || input == "x")
                 {
@@ -49,7 +47,7 @@ namespace h1_t6
                     break;
                 }
 
-                if (double.TryParse(input, out number) == false)   // syötteen muunto kokonaisluvuksi
+                if (int.TryParse(input, out number) == false)   // syötteen muunto kokonaisluvuksi
                 {                                               // jos ei ole luku, niin kysytään uudestaan
                     Console.WriteLine("Virheellinen syöte");
                     continue;

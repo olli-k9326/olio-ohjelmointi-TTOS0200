@@ -4,44 +4,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace h1_t6
+namespace h1_t7
 {
-    class ht_t6
+    class h1_t7
     {
         static void Main(string[] args)
         {
-            double distance = 0;
-            
-            double gasolinePer100 = 7.02;
-            double gasolineExpLitre = 1.595;
+            int year = 0;
+     
             bool exit = false;
 
             while (!exit)
             {
-                exit = UserInput(ref distance);     // kysytään matka
+                exit = UserInput(ref year);     // kysytään vuosi
                 if (exit) continue;     // pois silmukasta, jos syötteessä esiintyi "exit"
-                GasolineExpence(distance, gasolinePer100, gasolineExpLitre);
+
+                if(LeapYear(year))
+                    Console.WriteLine("\nVuosi on karkausvuosi.");
+                else
+                    Console.WriteLine("\nVuosi ei ole karkausvuosi.");
             }
-
         }
-        static void GasolineExpence(double distance, double gasolinePer100, double gasolineExpLitre)
+
+        static bool LeapYear(int year)
         {
-            double gasoline = distance / 100 * gasolinePer100;
-            double expence = gasoline * gasolineExpLitre;
+            bool isLeapYear = false;
 
-            Console.WriteLine("Bensaa kuluu {0} litraa, kustannus {1} euroa", gasoline.ToString("#.##"), expence.ToString("#.##"));
+            if (year % 4 == 0) isLeapYear = true;
 
+            if (year % 100 == 0) isLeapYear = false;
+
+            if (year % 400 == 0) isLeapYear = true;
+
+            return isLeapYear;
         }
 
-
-        static bool UserInput(ref double number)
+        static bool UserInput(ref int number)
         {
             bool exit = false;
             string input;
 
             while (true)
             {
-                Console.Write("\nAnna matka > ");
+                Console.Write("\nAnna vuosi > ");
                 input = Console.ReadLine();                     // käyttäjän syöte
                 if (input == "exit" || input == "x")
                 {
@@ -49,7 +54,7 @@ namespace h1_t6
                     break;
                 }
 
-                if (double.TryParse(input, out number) == false)   // syötteen muunto kokonaisluvuksi
+                if (int.TryParse(input, out number) == false)   // syötteen muunto kokonaisluvuksi
                 {                                               // jos ei ole luku, niin kysytään uudestaan
                     Console.WriteLine("Virheellinen syöte");
                     continue;
