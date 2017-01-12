@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C478202D-7A6B-4840-9477-F31785AA44CA}</ProjectGuid>
+    <ProjectGuid>{EB727D1C-C2CA-4EF6-9231-1D33E52EB303}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Harj1</RootNamespace>
-    <AssemblyName>Harj1</AssemblyName>
+    <RootNamespace>h1_t5</RootNamespace>
+    <AssemblyName>h1_t5</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="harj1.cs" />
+    <Compile Include="h1_t5.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
