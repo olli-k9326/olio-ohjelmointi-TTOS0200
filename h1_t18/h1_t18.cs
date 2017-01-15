@@ -21,9 +21,7 @@ namespace h1_t18
                 exit = UserInput(out sentence); // kysytään käyttäjältä merkkijono
 
                 if (exit) continue;     // pois silmukasta, jos syötteessä esiintyi "exit"
-
-                Palindrome(sentence);       // tarkistetaan onko palindromi
-
+                
                 if (Palindrome(sentence))
                 {
                     Console.WriteLine("Annettu merkkijono on palindromi");
