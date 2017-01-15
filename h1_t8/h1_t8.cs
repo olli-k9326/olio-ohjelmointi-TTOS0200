@@ -3,7 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*Tehtävä 8
 
+Tee ohjelma, joka kysyy käyttäjältä 3 kokonaislukua ja tulostaa niistä suurimman.
+
+Esimerkkitoiminta:
+
+
+    Anna Luku > 5 [Enter]
+    Anna Luku > 15 [Enter]
+    Anna Luku > 7 [Enter]
+    Suurin luku on 15
+    */
 namespace h1_t8
 {
     class h1_t8

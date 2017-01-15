@@ -3,7 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*
+ *Tehtävä 13
 
+Mäkihypyssä käytetään viittä arvostelutuomaria. Kirjoita ohjelma, joka kysyy arvostelupisteet yhdelle hypylle ja tulostaa tyylipisteiden summan siten, että summasta on vähennetty pois pienin ja suurin tyylipiste.
+
+Esimerkkitoiminta:
+
+
+    Anna pisteet > 18 [Enter]
+    Anna pisteet > 15 [Enter]
+    Anna pisteet > 20 [Enter]
+    Anna pisteet > 19 [Enter]
+    Anna pisteet > 17 [Enter]
+    Kokonaispisteet ovat 54
+    */
 namespace h1_t13
 {
     class h1_t13

@@ -3,10 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*Tehtävä 9
 
-namespace h1_t10
+Tee ohjelma, joka kysyy käyttäjältä lukuja, kunnes hän syöttää luvun 0. Ohjelman tulee tulostaa syötettyjen lukujen summa.
+
+Esimerkkitoiminta:
+
+
+    Anna Luku > 10 [Enter]
+    Anna Luku > 20 [Enter]
+    Anna Luku > 30 [Enter]
+    Anna Luku > 0 [Enter]
+    Lukujen summa on 60
+    */
+namespace h1_t09
 {
-    class h1_t10
+    class h1_t09
     {
         static void Main(string[] args)
         {

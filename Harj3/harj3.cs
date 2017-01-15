@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*
+Tehtävä 3
 
+Tee ohjelma, joka kysyy käyttäjältä kolme lukua ja tulostaa niiden summan ja keskiarvon. 
+     */
 namespace Harj3
 {
     class Program
@@ -38,7 +42,7 @@ namespace Harj3
                 if (exit) continue;
 
                 Console.WriteLine("\nLukujen summa: " + numbers.Sum());
-                Console.WriteLine("Lukujen keskiarvo: " + numbers.Average());
+                Console.WriteLine("Lukujen keskiarvo: " + Math.Round(numbers.Average(), 2));
 
             }
             

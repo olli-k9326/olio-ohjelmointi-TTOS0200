@@ -3,6 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/* 
+ * Tehtävä 1
+
+Tee ohjelma, joka tulostaa käyttäjän antamaa lukua (1, 2 tai 3) vastaavan luvun sanana (yksi, kaksi tai kolme). Jos käyttäjä syöttää jonkin muun luvun, tulee näytölle tulostaa teksti: "joku muu luku".
+
+Esimerkkitoiminta:
+
+    Anna luku > 1 [Enter]
+    Annoit luvun yksi
+    
+ */
 
 namespace Harj1
 {
@@ -40,7 +51,7 @@ namespace Harj1
 
                     default:
                         Console.Write("Joku muu luku");
-                        continue;
+                        continue;    // ohittaa "annoit luvun" -kohdan
                 } 
                 Console.Write("Annoit luvun " + numberString);
                 

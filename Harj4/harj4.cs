@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*
+ Tehtävä 4
 
+Tee ohjelma, jossa kysytään käyttäjältä tämän ikä. Jos ikä on alle 18 vuotta,
+tulosta "alaikäinen", jos se on 18-65 vuotta, tulosta "aikuinen",
+muussa tapauksessa tulosta "seniori". 
+     */
 namespace Harj4
 {
     class Program
@@ -11,7 +17,6 @@ namespace Harj4
         static void Main(string[] args)
         {
             int age = 0;
-            string ageString;
             bool exit = false;
 
             while (exit == false)
@@ -19,10 +24,8 @@ namespace Harj4
                 exit = UserInput(ref age);  // kysytään käyttäjän ikä. Palauttaa arvon true, jos input = "exit"
 
                 if (exit) continue;     // pois silmukasta, jos syötteessä esiintyi "exit"
-
-                ageString = ageToString(age);       // talletetaan ikää vastaava sana
-
-                Console.WriteLine(ageString);           // tulostetaan kyseinen sana
+                
+                Console.WriteLine(ageToString(age));      // tulostetaan ikää vastaava sana
             }
 
             Console.WriteLine("Ohjelman suoritus päättyy");

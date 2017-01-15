@@ -3,7 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*
+ Tehtävä 7
 
+Tee ohjelma, joka näyttää onko annettu vuosi karkausvuosi. Vuosiluku kysytään käyttäjältä.
+
+    Algoritmi
+    4:llä jaolliset on, paitsi täydet vuosisadat. Kuitenkin 400:lla jaolliset vuosisadat ovat
+    Esim. 1991 -> ei, 1992 -> on, 1900 -> ei, 2000 -> on
+
+Esimerkkitoiminta:
+
+    Anna vuosi > 1992 [Enter]
+    Vuosi on karkausvuosi.
+    
+     */
 namespace h1_t7
 {
     class h1_t7

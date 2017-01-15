@@ -3,7 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*
+ Tehtävä 11
 
+Tee kahden sisäkkäisen for-silmukan avulla ohjelma, joka tulostaa seuraavanlaisen kuvion:
+*
+**
+***
+****
+*****
+     */
 namespace h1_t11
 {
     class h1_t11

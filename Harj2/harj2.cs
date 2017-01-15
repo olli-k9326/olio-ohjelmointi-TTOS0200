@@ -4,6 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+Tehtävä 2
+
+Tee ohjelma, jossa annetaan oppilaalle koulunumero seuraavan taulukon mukaan (pistemäärä kysytään ja ohjelma tulostaa numeron):
+pisteraja 	numero
+0-1 	0
+2-3 	1
+4-5 	2
+6-7 	3
+8-9 	4
+10-12 	5
+
+     Esimerkkitoiminta:
+
+
+    Anna pistemäärä > 8 [Enter]
+    Koulunumero on 4
+    
+ */
 namespace Harj2
 {
     class Program
@@ -30,8 +49,8 @@ namespace Harj2
                     continue;
                 }
 
-                grade = 0;
-                for (int i = 1; i <= 5; i++)         // arvosanan määrittely
+                
+                for (int i = 0; i <= 5; i++)         // arvosanan määrittely
                 {
                     if(points >= gradeChart[i])         
                     {
