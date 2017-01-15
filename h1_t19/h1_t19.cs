@@ -10,24 +10,26 @@ namespace h1_t19
     {
         static void Main(string[] args)
         {
+            
             bool exit = false;      // ohjelman lopetus
             bool win = false;       // voitto
             bool lose = false;      // häviö
             string input;           // käyttäjän syöttämä kirjain
             string body = "O|/\\|/\\";      // hirsipuun ruumiin kehon osat
-            
+            int wrongGuesses = 0;
+
             string [] wordList = new string[]{ "administraatio", "oskilloskooppi", "observoida", "googlata" };      // lista arvattavista sanoista
             Random r = new Random();            
             int x = r.Next(0, wordList.Length );            // satunnaisluku, jolla arvotaan arvattava sana sanalistasta
             string wordToGuess = wordList[x];               // arvattavan sanan tallennus
             wordToGuess = wordToGuess.ToUpper();            // arvattavan sanan muunto ISOILLE KIRJAIMILLE
 
-            StringBuilder guessed = new StringBuilder();        // Tähän talletetaan oikein arvatut merkit
-            guessed.Append('_', wordToGuess.Length);            // täytetään se _ merkeillä
-            StringBuilder wrongGuess = new StringBuilder();   
-            wrongGuess.Append(" ");                             // Tähän talletetaan pieleen menneet arvaukset
+            char[] guessed = new char[wordToGuess.Length];        // Tähän talletetaan oikein arvatut merkit
+            FillCharArray(ref guessed, '_');
+            char[] wrongGuess = new char[body.Length];          // väärin arvatut merkit
+            FillCharArray(ref wrongGuess, ' ');
 
-            Screen(guessed, wrongGuess, win, lose, body);     // pelin tulostus näytölle
+            Screen(guessed, wrongGuess, win, lose, body, wrongGuesses);     // pelin tulostus näytölle
 
             while (!exit && !lose && !win)
             {
@@ -35,12 +37,13 @@ namespace h1_t19
                 UserInput(out input, ref exit);             // kysytään käyttäjältä kirjainta
                 if (exit) continue;                         // pois silmukasta, jos syötteessä esiintyi "exit"
                 
-                Hirsipuu(input.ToUpper(), wordToGuess, ref guessed, ref wrongGuess, ref win, ref lose, body.Length);       // itse varsinainen hirsipuupeli
+                Hirsipuu(input.ToUpper(), wordToGuess, ref guessed, ref wrongGuess, ref win, ref lose, body.Length, ref wrongGuesses);       // itse varsinainen hirsipuupeli
 
-                Screen(guessed, wrongGuess, win, lose, body);     // pelin tulostus näytölle
+                Screen(guessed, wrongGuess, win, lose, body, wrongGuesses);     // pelin tulostus näytölle
             }
         }
-        static void Hirsipuu(string input, string wordToGuess, ref StringBuilder guessed, ref StringBuilder wrongGuess, ref bool win, ref bool lose, int wrongMax)
+        
+        static void Hirsipuu(string input, string wordToGuess, ref char[] guessed, ref char[] wrongGuess, ref bool win, ref bool lose, int wrongMax, ref int wrongGuesses)
         {
             bool match = false;         // löytyykö syötetty kirjain arvattavasta sanasta?
             for (int i = 0; i < wordToGuess.Length; i++)      
@@ -53,22 +56,23 @@ namespace h1_t19
             }
             if (match == false)     // jos ei löytynyt, niin lisätään syötetty kirjain wrongGuess muuttujaan.
             {
-                wrongGuess.Append(input[0]);
+                wrongGuess[wrongGuesses] = input[0];
+                wrongGuesses++;
             }
                 
-            if(guessed.ToString() == wordToGuess)       // jos arvattujen kirjaimien tallennukseen varattu muuttuja matchaa arvattavan sanan kanssa, peli on voitettu
+            if(guessed.SequenceEqual(wordToGuess))       // jos arvattujen kirjaimien tallennukseen varattu muuttuja matchaa arvattavan sanan kanssa, peli on voitettu
                 win = true;
 
-            if (wrongGuess.Length -1 == wrongMax)       // Jos vääriä arvauksia on tullut maksimimäärä, niin peli on hävitty. ( -1 ylimääräisen välilyönnin takia)
+            if (wrongGuesses == wrongMax)       // Jos vääriä arvauksia on tullut maksimimäärä, niin peli on hävitty. 
                 lose = true;
 
         }
         
-        static void Screen(StringBuilder guessed, StringBuilder wrongGuess, bool win, bool lose, string body)
+        static void Screen(char[] guessed, char[] wrongGuess, bool win, bool lose, string body, int wrongGuesses)
         {
             string winLose = " ";   // voitto/ häviö tähän muuttujaan
 
-            string bodyPart = body.Substring(0, wrongGuess.Length - 1) + new string(' ', body.Length - (wrongGuess.Length-1));
+            string bodyPart = body.Substring(0, wrongGuesses) + new string(' ', body.Length - wrongGuesses);
                                                         // Muodostetaan hirsipuun ruumista väärien arvauksien mukaan.
             if (win)
                 winLose = "Arvasit sanan, hyvä!";
@@ -89,17 +93,7 @@ namespace h1_t19
             Console.WriteLine("|____________    " + winLose );
             
         }
-
-        static StringBuilder PrintWord(StringBuilder variable)  // Laitetaan stringbuilderin kirjainten välille välilyönnit, käytetään Screen-metodissa.
-        {
-            StringBuilder output = new StringBuilder();
-            for (int i = 0; i < variable.Length; i++)
-            {
-                output.Append(" " + variable[i]);
-            }
-            return output;
-        }
-
+        
         static void UserInput(out string input, ref bool exit)          // kysytään syöte käyttäjältä
         {
             bool correctInput = false;
@@ -123,6 +117,25 @@ namespace h1_t19
                 }
             } while (correctInput == false);
             
+            return;
+        }
+        static string PrintWord(char[] variable)  // Laitetaan arvattavan sanan kirjainten välille välilyönnit, käytetään Screen-metodissa.
+        {
+            string output = " ";
+            for (int i = 0; i < variable.Length; i++)
+            {
+                output = output + variable[i] + " ";
+               
+            }
+            return output;
+        }
+
+        static void FillCharArray(ref char[] array, char ch)        // char taulukon alustamiseen yhdellä kirjaimella
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = ch;
+            }
             return;
         }
     }
