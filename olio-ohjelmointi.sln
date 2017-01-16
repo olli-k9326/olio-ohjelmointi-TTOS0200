@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "h1_t19", "h1_t19\h1_t19.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "h1_t20", "h1_t20\h1_t20.csproj", "{11E70F38-3E1F-4A44-B26F-1868152E5C80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOdemot", "OOdemot\OOdemot.csproj", "{CE678509-E3A8-4A63-A446-644E0EACEBD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{11E70F38-3E1F-4A44-B26F-1868152E5C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11E70F38-3E1F-4A44-B26F-1868152E5C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11E70F38-3E1F-4A44-B26F-1868152E5C80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE678509-E3A8-4A63-A446-644E0EACEBD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE678509-E3A8-4A63-A446-644E0EACEBD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE678509-E3A8-4A63-A446-644E0EACEBD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE678509-E3A8-4A63-A446-644E0EACEBD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
