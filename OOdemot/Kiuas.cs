@@ -12,9 +12,10 @@ namespace JAMK.IT
         public float Lämpötila { get; set; }
         // kosteus voi olla välillä 0-100
         float kosteus;
-        public float Kosteus {
-            get {return kosteus;}
-            
+        public float Kosteus
+        {
+            get { return kosteus; }
+
             set
             {
                 kosteus = value;
@@ -25,4 +26,28 @@ namespace JAMK.IT
 
 
     }
+
+    enum Pesuohjelma { Hienopesu, Villapesu, Kirjopesu, Valkopesu };
+
+    public class Pesukone
+    {
+        private string MAlli;
+        private bool onkoPesemässä;
+        private bool PesuasetuksetTehty;
+        bool OnkoPäällä;
+        bool Pikapesu = false;
+        bool Linkous = false;
+        int Lämpötila;
+        Pesuohjelma Pesuohjelma;
+
+        public void OnkoPesemässä(bool arvo)
+        {
+            
+        }
+        public void Pesuasetukset()
+
+
+
+    }
+
 }
