@@ -19,7 +19,7 @@ namespace Harj1
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void H1T1()
         {
             string input;          // käyttäjän syöte
             int number;             // tähän talletetaan luku
