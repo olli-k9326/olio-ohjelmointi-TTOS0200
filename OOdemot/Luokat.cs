@@ -194,6 +194,33 @@ Toteuta Vehicle-luokan ohjelmointi sekä pääohjelma, jolla luot olion Vehicle-
             if (Tyres > 300)
                 tyres = 300;
         }
+        
+    }
+    public class Opiskelija
+    {
+        private string etunimi; 
+        private string sukunimi;
+        private string hTunnus;
+        private string opintosuuntaus;
+        private string ryhmätunnus;
+        private string opiskelijatunnus;
+        
+        public void VaihdaOpintosuuntaus(string Opintosuuntaus)
+        {
+            opintosuuntaus = Opintosuuntaus;
+        }
+        public void AsetaRyhmätunnus(string Ryhmätunnus)
+        {
+
+        }
+
+        public Opiskelija(string Etunimi, string Sukunimi, string HTunnus, string Opintosuuntaus)
+        {
+           etunimi = Etunimi;
+           sukunimi= Sukunimi;
+           hTunnus = HTunnus;
+           opintolinja= Opintolinja;
+        }
 
     }
 

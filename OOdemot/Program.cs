@@ -14,7 +14,8 @@ namespace OOdemot
             //TestaaKiuas();
             //TestaaPesukone();
             //TestaaTelevisio();
-            TestCar();
+            //TestCar();
+            TestaaOpiskelija();
         }
         // tehtävän 1 Kiuas-luokan testaus
         static void TestaaKiuas()
@@ -114,6 +115,11 @@ namespace OOdemot
             car2.PrintData();
             car3.PrintData();
             Console.WriteLine(car.ToString()); 
+        }
+        public static void TestaaOpiskelija()
+        {
+            Opiskelija opiskelija1 = new Opiskelija();
+            Console.WriteLine(opiskelija1);
         }
     }
 }
