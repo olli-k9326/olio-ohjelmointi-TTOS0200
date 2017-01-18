@@ -238,4 +238,5 @@ opiskelijat taulukkoon (esim. 5 opiskelijaa). Tulosta taulukossa olevien opiskel
 
 //
 //
-// Okxa 
+// Okxa K870 
+// tuomasl96 t6
