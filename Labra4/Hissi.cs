@@ -135,25 +135,47 @@ Esimerkkitoiminta:
 
 
     }
+
+    /*
+     * Tehtävä 3
+
+Ohjelmassa tulee pystyä käsittelemään työntekijöiden tietoja (Employee). Työntekijöiden osalta seuraavia tietoa pitää pystyä käsittelemään: työntekijän nimi (Name), työntekijän ammatti (Profession) ja palkka (Salary). Samassa ohjelmassa pitää pystyä käsittelemään myös johtajien tietoja (Boss), heillä on edellisten lisäksi myös auto (Car) ja palkkabonus (Bonus).
+
+Tutki tehtävän tavoitetta/kerrontaa ja toteuta tarvittavat UML-luokkakaaviot. Toteuta tämän jälkeen vaaditut luokat, luo ja käytä olioita pääohjelmasta. Tulosta vaadittujen luokkien olioiden tietoja output-ikkunaan. Tietoja ei tarvitse kysyä sovelluksen käyttäjältä, vaan voit alustaa ne suoraan pääohjelmassa.
+
+Esimerkkitoiminta: (huomaa, että Kirsi Kernelin tietoja on muutettu ohjelman suorituksessa)
+
+
+    Employee:
+    - Name:Kirsi Kernel Profession:Teacher Salary:1200
+    
+    Boss:
+    - Name:Jussi Jurkka Profession:Head of Institute Salary:9000 Car:Audi Bonus:5000
+    
+    Employee:
+    - Name:Kirsi Kernel Profession:Principal Teacher Salary:2200
+
+    */
+
     public class Employee
     {
         public string Name { get; set; }
         public string Profession { get; set; }
-        public int Salary { get; set; }
+        private int salary;
 
-        /*
+        public int Salary
     {
-        get { return Salary; }
+        get { return salary; }
         set
         {
-            Salary = value;
+            salary = value;
 
             if (value < 0)
-                Salary = 0;
+                salary = 0;
 
         }
     }
-    */
+    
         public override string ToString()
         {
             return
@@ -184,10 +206,130 @@ Esimerkkitoiminta:
                 "\nAuto: " + Car +
                 "\nBonus: " + Bonus;
         }
-        public Boss(string setName, string setProfession, int setSalary, s) : base(setName, setProfession, setSalary)
+        public Boss(string setName, string setProfession, int setSalary, string setCar, int setBonus) : base(setName, setProfession, setSalary)
         {
-            Car =
+            Car = setCar;
+            Bonus = setBonus;
         }
     }
+    /*
+     * Tehtävä 4
+
+Toteutettavassa sovelluksessa tulisi pysyä käsittelemään erilaisia kulkuneuvoja. 
+Kaikilla kulkuneuvoilla on löydettävissä yhteisinä ominaisuuksina: nimi, malli,
+vuosimalli ja väri. Erikoistapauksina pitää pystyä käsittelemään polkupyöriä ja veneitä.
+Polkupyörän osalta pitää pystyä erottelemaan se, että onko kyseessä vaihdepyörä 
+vai ei sekä mahdollisen vaihteiston mallinimi. Veneiden osalta tietoina pitää 
+ainakin olla veneen tyyppi (soutuvene, moottorivene, kajakki, ...) ja kuinka monta
+istuinpaikkaa veneestä löytyy.
+
+Tutki tehtävän tavoitetta/kerrontaa ja toteuta 
+tarvittavat UML-luokkakaaviot. Toteuta tämän jälkeen vaaditut 
+luokat, luo ja käytä olioita pääohjelmasta. Tulosta vaadittujen 
+luokkien olioiden tietoja output-ikkunaan. Tietoja ei tarvitse kysyä
+sovelluksen käyttäjältä, vaan voit alustaa ne suoraan pääohjelmassa.
+
+Esimerkkitoiminta:
+
+
+    Bike info 
+    - Name:Jopo Model:Street ModelYear:2016 Color:Blue GearWheels:False Gear Name:
+    
+    Bike2 info 
+    - Name:Tunturi Model:StreetPower ModelYear:2010 Color:Black GearWheels:True Gear Name:Shimano
+    
+    Boat info 
+    - Name:Suvi Model:S900 ModelYear:1990 Color:White SeatCount:3 BoatType:Rowboat
+    
+    Boat2 info 
+    - Name:Yamaha Model:Model 1000 ModelYear:2010 Color:Yellow SeatCount:5 BoatType:Motorboat
+    */
+    public class Vehicle
+    {
+        public string Name { get; set; }
+        public string Model { get; set; }
+        public int ModelYear { get; set; }
+        public string Color { get; set; }
+        public Vehicle(string sName, string sModel, int sModelYear, string sColor)
+        {
+            Name = sName;
+            Model = sModel;
+            ModelYear = sModelYear;
+            Color = sColor;
+        }
+        public override string ToString()
+        {
+            return
+                "Name: " + Name +
+                "\nModel: " + Model +
+                "\nModelYear: " + ModelYear +
+                "\nColor: " + Color;
+        }
+    }
+    public class Bicycle : Vehicle
+    {
+        public bool HasGears { get; set; }
+        private string gearModelName;
+
+        public string GearModelName
+        {
+            get { return gearModelName; }
+            set
+            {
+                gearModelName = value;
+                HasGears = true;
+            }
+        }
+        public override string ToString()
+        {
+            string GearWheels;
+
+            if (HasGears)
+                GearWheels = "Yes";
+            else
+                GearWheels = "No";
+
+                return base.ToString()
+                    + "\nGearwheels: " + GearWheels
+                    + "\nGear model: " + gearModelName;
+        }
+
+        public Bicycle(string sName, string sModel, int sModelYear, string sColor) : base(sName, sModel, sModelYear, sColor)
+        {
+
+        }
+        public Bicycle(string sName, string sModel, int sModelYear, string sColor, string SGearModelName) : base(sName, sModel, sModelYear, sColor)
+        {
+            gearModelName = SGearModelName;
+            HasGears = true;
+        }
+           
+       
+
+    }
+    public class Boat : Vehicle
+    {
+        public string Type { get; set; }
+        public int Seats { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString() +
+                "\nBoat type: " + Type +
+                "\nSeats: " + Seats;
+        }
+
+        public Boat(string sName, string sModel, int sModelYear, string sColor) : base(sName, sModel, sModelYear, sColor)
+        {
+
+        }
+        public Boat(string sName, string sModel, int sModelYear, string sColor, string sType, int sSeats) : base(sName, sModel, sModelYear, sColor)
+        {
+            Type = sType;
+            Seats = sSeats;
+        }
+        
+    }
+
 
 }

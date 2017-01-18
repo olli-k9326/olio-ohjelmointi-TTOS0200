@@ -11,9 +11,10 @@ namespace Labra4
     {
         static void Main(string[] args)
         {
-            //TestaaHissi();
+            // TestaaHissi();
             // TestAmplifier();
-            TestEmployee();
+            // TestEmployee();
+            TestBoat();
         }
         static void TestaaHissi()
         {
@@ -76,11 +77,27 @@ namespace Labra4
         static void TestEmployee()
         {
             Employee employee1 = new Employee("Matti Meikäläinen", "ohjelmoija", 3180);
-            Boss boss1 = new Boss("Seppo Karhunen", "toimitusjohtaja", 3670);
-            Console.WriteLine(employee1);
-            Console.WriteLine();
-            Console.WriteLine(boss1);
+            Boss boss1 = new Boss("Seppo Karhunen", "toimitusjohtaja", 12670, "Lamborghini", 2000);
 
+            Console.WriteLine(employee1);       // tulostetaan työntekijä
+            Console.WriteLine();
+            Console.WriteLine(boss1);           // pomo
+
+            boss1.Car = "Maserati";
+            boss1.Profession = "toimittaja";            // muokataan pomoa
+
+            Console.WriteLine();
+            Console.WriteLine(boss1);           // uusi tulostus
+
+        }
+        static void TestBoat()
+        {
+            Bicycle bicycle = new Bicycle("Insera", "Cheap", 2015, "Black", "Nexus");
+            Boat boat = new Boat("Tristan", "Voyager", 2008, "White", "Motorboat", 4);
+
+            Console.WriteLine(bicycle.ToString());
+            Console.WriteLine();
+            Console.WriteLine(boat.ToString());
         }
 
     }
