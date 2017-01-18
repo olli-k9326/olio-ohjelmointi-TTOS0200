@@ -198,30 +198,44 @@ Toteuta Vehicle-luokan ohjelmointi sekä pääohjelma, jolla luot olion Vehicle-
     }
     public class Opiskelija
     {
-        private string etunimi; 
-        private string sukunimi;
-        private string hTunnus;
-        private string opintosuuntaus;
-        private string ryhmätunnus;
-        private string opiskelijatunnus;
-        
-        public void VaihdaOpintosuuntaus(string Opintosuuntaus)
-        {
-            opintosuuntaus = Opintosuuntaus;
-        }
-        public void AsetaRyhmätunnus(string Ryhmätunnus)
-        {
+        /*
+             Tehtävä 5 home Kotitehtävä
+Suunnittele UML-editorilla Opiskelija-luokka, joka sisältää opiskelijalle tyypillisiä tietoja ja toimintoja.
+Tee uusi projekti. Ohjelmoi Opiskelija-luokka sekä toteuta pääohjelma, joka luo muutamia opiskelijoita ja tallentaa
+opiskelijat taulukkoon (esim. 5 opiskelijaa). Tulosta taulukossa olevien opiskelijoiden tiedot käyttämällä toistorakennetta.
+*/
+        public string Etunimi { get; set; }
+        public string Sukunimi { get; set; }
+        public string HTunnus { get; }
+        public string Opintosuuntaus { get; set; }
+        public string Ryhmätunnus { get; set; }
+        public string Opiskelijatunnus { get; set; }
 
+        public override string ToString()
+        {
+            string s;
+
+            s = "Nimi: " + Etunimi + " " + Sukunimi
+                + "\nHenkilötunnus: " + HTunnus
+                + "\nOpintosuuntaus: " + Opintosuuntaus
+                + "\nRyhmätunnus: " + Ryhmätunnus
+                + "\nOpiskelijatunnus: " + Opiskelijatunnus;
+
+            return s;
+        }
+        public Opiskelija(string sEtunimi, string sSukunimi, string sHTunnus, string sOpintosuuntaus)
+        {
+           Etunimi = sEtunimi;
+           Sukunimi = sSukunimi;
+           HTunnus = sHTunnus;
+           Opintosuuntaus = sOpintosuuntaus;
         }
 
-        public Opiskelija(string Etunimi, string Sukunimi, string HTunnus, string Opintosuuntaus)
-        {
-           etunimi = Etunimi;
-           sukunimi= Sukunimi;
-           hTunnus = HTunnus;
-           opintolinja= Opintolinja;
-        }
 
     }
 
 }
+
+//
+//
+// Okxa 

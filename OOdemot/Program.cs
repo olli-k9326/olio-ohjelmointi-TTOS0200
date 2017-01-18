@@ -118,8 +118,24 @@ namespace OOdemot
         }
         public static void TestaaOpiskelija()
         {
-            Opiskelija opiskelija1 = new Opiskelija();
-            Console.WriteLine(opiskelija1);
+            Opiskelija[] opiskelijat = new Opiskelija[5];
+            opiskelijat[0] = new Opiskelija("Jesse", "Jaskanen", "181292-238V", "Insinööri, Tieto- ja viestintätekniikka");
+            opiskelijat[1] = new Opiskelija("Petri", "Putin", "180292-228C", "Fysioterapeutti");
+            opiskelijat[2] = new Opiskelija("Petri", "Putin", "180292-228C", "Fysioterapeutti");
+            opiskelijat[3] = new Opiskelija("Simo", "Heiskanen", "180262-128C", "Insinööri, Tieto- ja viestintätekniikka");
+            opiskelijat[4] = new Opiskelija("Xiao", "Bebe", "180292-228C", "Insinööri, Tieto- ja viestintätekniikka");
+
+            opiskelijat[0].Opiskelijatunnus = "H8983";
+            opiskelijat[0].Ryhmätunnus = "TTV15S2";
+
+            for (int i = 0; i < opiskelijat.Length; i++)
+            {
+                Console.WriteLine(opiskelijat[i].ToString());
+                Console.WriteLine();
+            }
+
+
+           
         }
     }
 }
