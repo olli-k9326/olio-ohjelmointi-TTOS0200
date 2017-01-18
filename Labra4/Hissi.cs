@@ -31,9 +31,9 @@ Esimerkkitoiminta:
     Elevator is now in floor : 2
     */
 
-        public string ID { get;}
+        public string ID { get; }
         public bool OnkoPaalla { get; set; }
-        private int nykyinenKerros = 1; 
+        private int nykyinenKerros = 1;
         private int uusiKerros;
         private const int minKerros = 1;
         private const int maxKerros = 5;
@@ -41,8 +41,8 @@ Esimerkkitoiminta:
 
         public void SyotaUusiKerros(int UusiKerros)
         {
-            if ( UusiKerros >= minKerros && UusiKerros <= maxKerros )
-            { 
+            if (UusiKerros >= minKerros && UusiKerros <= maxKerros)
+            {
                 uusiKerros = UusiKerros;
                 VaihdaKerros();
                 onkoValidiKerros = true;
@@ -73,7 +73,7 @@ Esimerkkitoiminta:
     }
     public class Amplifier
     {
-        public string ID { get;}
+        public string ID { get; }
         public bool IsItOn { get; set; }
         private int currentVolume = 1;
         private int setVolume;
@@ -164,18 +164,18 @@ Esimerkkitoiminta: (huomaa, että Kirsi Kernelin tietoja on muutettu ohjelman su
         private int salary;
 
         public int Salary
-    {
-        get { return salary; }
-        set
         {
-            salary = value;
+            get { return salary; }
+            set
+            {
+                salary = value;
 
-            if (value < 0)
-                salary = 0;
+                if (value < 0)
+                    salary = 0;
 
+            }
         }
-    }
-    
+
         public override string ToString()
         {
             return
@@ -191,8 +191,8 @@ Esimerkkitoiminta: (huomaa, että Kirsi Kernelin tietoja on muutettu ohjelman su
             Salary = setSalary;
         }
 
-        
-        
+
+
     }
     public class Boss : Employee
     {
@@ -289,9 +289,9 @@ Esimerkkitoiminta:
             else
                 GearWheels = "No";
 
-                return base.ToString()
-                    + "\nGearwheels: " + GearWheels
-                    + "\nGear model: " + gearModelName;
+            return base.ToString()
+                + "\nGearwheels: " + GearWheels
+                + "\nGear model: " + gearModelName;
         }
 
         public Bicycle(string sName, string sModel, int sModelYear, string sColor) : base(sName, sModel, sModelYear, sColor)
@@ -303,8 +303,8 @@ Esimerkkitoiminta:
             gearModelName = SGearModelName;
             HasGears = true;
         }
-           
-       
+
+
 
     }
     public class Boat : Vehicle
@@ -328,8 +328,68 @@ Esimerkkitoiminta:
             Type = sType;
             Seats = sSeats;
         }
-        
+
     }
+    /*
+     * Tehtävä 5 home Kotitehtävä
+
+Tehtävässä tulee toteuttaa C#-ohjelma radion perustoimintojen testaamiseen.
+
+Kannettavassa radiossa on vain kolme säädintä: päälle/pois-kytkin, äänen voimakkuuden
+säädin (arvot 0, 1, 2,..., 9) ja kuunneltavan kanavan taajuusvalinta (2000.0 - 26000.0).
+Laadi luokka kannettavan radion toteutukseksi. Käytä tekemääsi luokkaa pääohjelmasta
+käsin, eli testaile radion toimivuutta erilaisilla voimakkuuden ja taajuuden arvoilla.
+Jätä asetus- ja tulostuslauseet näkyville pääohjelmaan, jotta radio-olion käyttö voidaan
+todentaa. 
+*/
+    public class Radio
+    {
+        public string Model { get; }
+        public bool IsOn { get; set; }
+        private int volume;
+        public float minFreq = 2000;
+        public float maxFreq = 26000;
+        public int minVol = 0;
+        public int maxVol = 9;
 
 
+        public int Volume
+        {
+            get { return volume; }
+            set
+            {
+                volume = value;
+                if (value < minVol)
+                    volume = minVol;
+                if (value > maxVol)
+                    volume = maxVol;
+            }
+        }
+        private float frequency;
+
+        public float Frequency
+        {
+            get { return frequency; }
+            set
+            {
+                frequency = value;
+                if (value < minFreq)
+                    frequency = minFreq;
+                if (value > maxFreq)
+                    frequency = maxFreq;
+            }
+        }
+        public override string ToString()
+        {
+            return
+                "Äänenvoimakkuus = " + Volume + ",  Taajuus = " + Frequency;
+        }
+        public Radio(string sModel)
+        {
+            Model = sModel;
+        }
+        
+       
+
+    }
 }

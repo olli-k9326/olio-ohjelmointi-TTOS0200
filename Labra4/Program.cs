@@ -14,7 +14,8 @@ namespace Labra4
             // TestaaHissi();
             // TestAmplifier();
             // TestEmployee();
-            TestBoat();
+            // TestBoat();
+            TestRadio();
         }
         static void TestaaHissi()
         {
@@ -98,6 +99,28 @@ namespace Labra4
             Console.WriteLine(bicycle.ToString());
             Console.WriteLine();
             Console.WriteLine(boat.ToString());
+        }
+        static void TestRadio()
+        {
+            Radio radio = new Radio("Sony JEJI39399");
+            radio.IsOn = true;
+            if(radio.IsOn)
+            {
+                Console.WriteLine(radio.ToString());
+                radio.Volume = 5;
+                radio.Frequency = 20030.34F;
+                Console.WriteLine(radio.ToString());
+                radio.Volume = 19;
+                radio.Frequency = 2234030.34F;
+                Console.WriteLine(radio.ToString());
+                radio.Volume = -5455;
+                radio.Frequency = 0.34F;
+                Console.WriteLine(radio.ToString());
+                radio.Volume = 4;
+                radio.Frequency = 4440F;
+                Console.WriteLine(radio.ToString());
+
+            }
         }
 
     }
