@@ -14,8 +14,8 @@ namespace Labra4
             // TestaaHissi();
             // TestAmplifier();
             // TestEmployee();
-            // TestBoat();
-            TestRadio();
+             TestBoat();
+            // TestRadio();
         }
         static void TestaaHissi()
         {
@@ -99,6 +99,10 @@ namespace Labra4
             Console.WriteLine(bicycle.ToString());
             Console.WriteLine();
             Console.WriteLine(boat.ToString());
+
+            Console.WriteLine();
+            bicycle.HasGears = false;
+            Console.WriteLine(bicycle.ToString());
         }
         static void TestRadio()
         {
