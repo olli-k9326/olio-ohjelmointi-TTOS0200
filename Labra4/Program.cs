@@ -11,11 +11,12 @@ namespace Labra4
     {
         static void Main(string[] args)
         {
-            // TestaaHissi();
-            // TestAmplifier();
+            //TestaaHissi();
+            //TestAmplifier();
             // TestEmployee();
-            // TestBoat();
-            TestRadio();
+             TestBoat();
+            // TestRadio();
+            // TestaaHuonekalut();
         }
         static void TestaaHissi()
         {
@@ -23,9 +24,9 @@ namespace Labra4
             hissi.OnkoPaalla = true;
             int temp;
             bool onnistuikoLukeminen;
-            while (hissi.OnkoPaalla)
+            while (hissi.OnkoPaalla)  // kysytään kerrosta niin kauan kuin hissi on päällä eli ikuisesti
             {
-                Console.WriteLine("Hissi on kerroksessa: {0}", hissi.NykyinenKerros());
+                Console.WriteLine("Hissi on kerroksessa: {0}", hissi.NykyinenKerros);
                 Console.Write("Anna kerroksen numero: ");
                 do
                 {
@@ -33,10 +34,10 @@ namespace Labra4
 
                     if (onnistuikoLukeminen)
                     {
-                        hissi.SyotaUusiKerros(temp);
-                        if(hissi.OnkoValidiKerros())
+                        hissi.NykyinenKerros = temp ;
+                        if(hissi.OnkoValidiKerros)
                         {
-                            break;
+                            break;  // siirrytään kysymään uusi kerros
                         }
                     }
 
@@ -54,7 +55,7 @@ namespace Labra4
             bool onnistuikoLukeminen;
             while (amplifier.IsItOn)
             {
-                Console.WriteLine("Vahvistimen äänenvoimakkuus: {0}", amplifier.CurrentVolume());
+                Console.WriteLine("Vahvistimen äänenvoimakkuus: {0}", amplifier.CurrentVolume);
                 Console.Write("Anna uusi äänenvoimakkuus 0 - 100: ");
                 do
                 {
@@ -62,8 +63,8 @@ namespace Labra4
 
                     if (onnistuikoLukeminen)
                     {
-                        amplifier.SetVolume(temp);
-                        if (amplifier.IsValidVolume())
+                        amplifier.CurrentVolume = temp;
+                        if (amplifier.IsValidVolume)
                         {
                             break;
                         }
@@ -98,29 +99,53 @@ namespace Labra4
 
             Console.WriteLine(bicycle.ToString());
             Console.WriteLine();
+
             Console.WriteLine(boat.ToString());
+            Console.WriteLine();
+
+            bicycle.HasGears = false;
+            Console.WriteLine(bicycle.ToString());
         }
         static void TestRadio()
         {
             Radio radio = new Radio("Sony JEJI39399");
             radio.IsOn = true;
-            if(radio.IsOn)
+            if (radio.IsOn)
             {
                 Console.WriteLine(radio.ToString());
+
                 radio.Volume = 5;
                 radio.Frequency = 20030.34F;
                 Console.WriteLine(radio.ToString());
+
                 radio.Volume = 19;
                 radio.Frequency = 2234030.34F;
                 Console.WriteLine(radio.ToString());
+
                 radio.Volume = -5455;
                 radio.Frequency = 0.34F;
                 Console.WriteLine(radio.ToString());
+
                 radio.Volume = 4;
                 radio.Frequency = 4440F;
                 Console.WriteLine(radio.ToString());
 
             }
+        }
+        static void TestaaHuonekalut()
+        {
+            Poyta poyta = new Poyta(2011, "Ikea", "300x130x82");
+            poyta.Malli = "dfdas";
+            Tuoli tuoli = new Tuoli(2015, "Ikea", "130x30x82");
+            tuoli.Jalkojenlkm = 6;
+            Hylly hylly = new Hylly(2016, "Ikea", "100x200x82");
+            hylly.LokeroidenLkm = 20;
+            Console.WriteLine(poyta);
+            Console.WriteLine();
+            Console.WriteLine(tuoli);
+            Console.WriteLine();
+            Console.WriteLine(hylly);
+
         }
 
     }

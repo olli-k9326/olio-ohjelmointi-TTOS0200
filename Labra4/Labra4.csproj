@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hissi.cs" />
+    <Compile Include="Luokat.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="pics\t6_UML.png" />
     <Content Include="pics\teht1-5_UML.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
