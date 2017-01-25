@@ -103,15 +103,17 @@ Esimerkkitoiminta:
     public class Kappale
     {
         public string Nimi { get; }
-        public string Kesto { get; }
-        public Kappale(string nimi, string kesto)
+        public int KestoMin { get; }
+        public int KestoSek { get; }
+        public Kappale(string nimi, int kestoMin, int kestoSek)
         {
             Nimi = nimi;
-            Kesto = kesto;
+            KestoMin = kestoMin;
+            KestoSek = kestoSek;
         }    
         public override string ToString()
         {
-            return Nimi + ", " + Kesto;
+            return string.Format("{0} {1}:{2:00}", Nimi, KestoMin, KestoSek);
         }
     }
     public class CD
@@ -161,6 +163,10 @@ korttipakan sekoittamisen?
             Maa = maa;
             Arvo = arvo;
         }
+        public override string ToString()
+        {
+            return string.Format("{0,-6} {1}", Maa, Arvo);
+        }
         public enum KorttiMaa { Pata, Hertta, Risti, Ruutu }
     }
 
@@ -173,11 +179,44 @@ korttipakan sekoittamisen?
             get { return pakka; }
         }
 
+        public Korttipakka()
+        {
+            pakka = new List<Kortti>();
+        }
+
         public void LisaaKortti(Kortti kortti)
         {
             pakka.Add(kortti);
         }
 
+        //private string LukuKuvakortiksi();
+
+        public override string ToString()
+        {
+            string s = "Korttipakan kortit: \n===================";
+            int korttiNro = 1;
+            foreach (Kortti kortti in pakka)
+            {
+                s += string.Format("\n{0,2}. kortti: {1}", korttiNro, kortti.ToString());
+                korttiNro++;
+            }
+            return s;
+        }
+        public void Sekoitus()
+        {
+            Random r = new Random();
+            int sekoitusLkm = 1000;
+            int x, y;
+            Kortti temp;
+            for (int i = 0; i < sekoitusLkm; i++)
+            {
+                x = r.Next(0, pakka.Count());
+                y = r.Next(0, pakka.Count());
+                temp = pakka[x];
+                pakka[x] = pakka[y];
+                pakka[y] = temp;
+            }
+        }
 
     }
     

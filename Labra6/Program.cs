@@ -12,7 +12,8 @@ namespace JAMK.IT.Henkilorekisteri
         static void Main(string[] args)
         {
             //TestaaHenkilorekisteri();
-            TestaaCD();
+            //TestaaCD();
+            TestaaKorttipakka();
         }
 
         static void TestaaHenkilorekisteri()
@@ -48,14 +49,14 @@ namespace JAMK.IT.Henkilorekisteri
         static void TestaaCD()
         {
             CD cdlevy = new CD("JokuNimi", "Nightwish");
-            Kappale kp0 = new Kappale ("biisi1","4:15");
-            Kappale kp1 = new Kappale ("Stargazers ","3:15");
-            Kappale kp2 = new Kappale ("Gethsemane ","2:15");
-            Kappale kp3 = new Kappale ("Devil & the Deep", "3:05");
-            Kappale kp4 = new Kappale ("Devil & the Deep", "4:19");
-            Kappale kp5 = new Kappale ("Moondance ","4:55");
-            Kappale kp6 = new Kappale ("Riddler ", "3:25");
-            Kappale kp7 = new Kappale ("Sleeping ", "3:21");
+            Kappale kp0 = new Kappale ("biisi1", 4, 15);
+            Kappale kp1 = new Kappale ("Stargazers ", 3, 15);
+            Kappale kp2 = new Kappale ("Gethsemane ", 2, 15);
+            Kappale kp3 = new Kappale ("Devil & the Deep", 3, 5);
+            Kappale kp4 = new Kappale ("Devil & the Deep", 4,19);
+            Kappale kp5 = new Kappale ("Moondance ", 4, 55);
+            Kappale kp6 = new Kappale ("Riddler ", 3, 25);
+            Kappale kp7 = new Kappale ("Sleeping ", 3, 21);
             cdlevy.LisaaKappale(kp0);
             cdlevy.LisaaKappale(kp1);
             cdlevy.LisaaKappale(kp2);
@@ -65,6 +66,23 @@ namespace JAMK.IT.Henkilorekisteri
             cdlevy.LisaaKappale(kp6);
             cdlevy.LisaaKappale(kp7);
             Console.WriteLine(cdlevy.ToString());
+        }
+        static void TestaaKorttipakka()
+        {
+            Korttipakka pakka = new Korttipakka();
+            for (int i = 2; i <= 14; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    Kortti kortti = new Kortti((Kortti.KorttiMaa)j, i);
+                    pakka.LisaaKortti(kortti);
+                }
+            }
+
+            Console.WriteLine(pakka.ToString());
+            pakka.Sekoitus();
+            Console.WriteLine(pakka.ToString());
+            
         }
     }
     
