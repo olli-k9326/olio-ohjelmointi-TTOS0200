@@ -189,7 +189,7 @@ korttipakan sekoittamisen?
             pakka.Add(kortti);
         }
 
-        //private string LukuKuvakortiksi();
+        
 
         public override string ToString()
         {
