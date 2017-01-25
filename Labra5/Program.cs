@@ -12,8 +12,8 @@ namespace Olio_Labra5
         static void Main(string[] args)
         {
             //TestaaAuto();
-            TestaaJaakaappi();
-            //TestaaNisakas();
+            //TestaaJaakaappi();
+            TestaaNisakas();
 
         }
 

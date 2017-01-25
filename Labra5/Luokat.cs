@@ -251,8 +251,9 @@ vauvalle ominaisuus vaippa (String).
 Toteuta pääohjelmassa muutamia ihmisiä, aikuisia ja vauvoja. Tulostele olioiden
 tietoja konsolille. 
 **/
-    abstract class Nisakas
+    abstract class Nisakas //k1647
     {
+
         public int Ika { get; set; }
         public abstract void Liiku();
     }
@@ -274,6 +275,10 @@ tietoja konsolille.
         public void Kasva()
         {
             Ika++;
+        }
+        public Ihminen()
+        {
+            Ika = 20;
         }
 
     }
@@ -304,6 +309,8 @@ tietoja konsolille.
             return base.ToString() + string.Format("    Auto: {0}", Auto);
         }
     }
+
+    // t4 rami
 
 
 
