@@ -142,4 +142,45 @@ Esimerkkitoiminta:
             return s;
         }
     }
+
+    /*
+     * Tehtävä 3 home Kotitehtävä
+Toteuta ohjelma, joka tallentaa kaikki korttipelin kortit (hertta, ruutu, risti ja pata. Numerot 1-52.) 
+valitsemaasi tietorakenteeseen ja tulostaa tietorakenteen sisällön. Bonustehtävä: kuinka voisit toteuttaa
+korttipakan sekoittamisen?
+*/
+ 
+  
+    public class Kortti
+    {
+        public KorttiMaa Maa { get; }
+        public int Arvo { get; }
+
+        public Kortti(KorttiMaa maa, int arvo)
+        {
+            Maa = maa;
+            Arvo = arvo;
+        }
+        public enum KorttiMaa { Pata, Hertta, Risti, Ruutu }
+    }
+
+    public class Korttipakka
+    {
+        private List<Kortti> pakka;
+
+        public List<Kortti> Pakka
+        {
+            get { return pakka; }
+        }
+
+        public void LisaaKortti(Kortti kortti)
+        {
+            pakka.Add(kortti);
+        }
+
+
+    }
+    
+    
+
 }
