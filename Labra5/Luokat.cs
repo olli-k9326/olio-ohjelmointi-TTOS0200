@@ -98,9 +98,7 @@ asioista/olioista.
         private float minLampo = 0;
         private float maxLampo = 10;
         private bool onnistuiko;
-
         
-
 
         public float MaxTilavuus
         {
@@ -176,10 +174,10 @@ asioista/olioista.
         public override string ToString()
         {
             string s;
-            s = string.Format("Jääkaapin {0} sisältö: \nTilaa käytetty {1} l / {2} l", Valmistaja, tilaaJaljella, maxTilavuus);
+            s = string.Format("Jääkaapin {0} sisältö: \nTilaa käytetty {1} l / {2} l", Valmistaja, maxTilavuus - tilaaJaljella, maxTilavuus);
             foreach (Elintarvike Tarvike in elintarvikkeet)
             {
-                s += string.Format("\n{0}, {1}  ({2} l)", Tarvike.Tyyppi, Tarvike.Valmistaja, Tarvike.Tilavuus);
+                s += string.Format("\n[{0}] {1}  {2} l", Tarvike.Tyyppi, Tarvike.Valmistaja, Tarvike.Tilavuus);
             }
             return s;
         }
@@ -231,7 +229,82 @@ asioista/olioista.
 
 
     }
-    public class
+    /*
+     * Tehtävä 3
+
+Tehtävässä tulee toteuttaa muutamia luokkia, joiden avulla testataan abstraktien metodien
+toimivuutta.
+
+Luo abstrakti luokka Nisakas, jolla on Ika-ominaisuus sekä Liiku-metodi, jonka toteutus
+on jätetty toteuttamatta (abstrakti metodi).
+
+Peri Nisakas-luokasta Ihminen-luokka, jolla on ominaisuuksina ihmiseen yleisesti 
+liittyviä ominaisuuksia (paino, pituus, nimi). Lisää Ihminen-luokkaan metodit: Liiku 
+ja Kasva, joista ensimmäinen tulostaa ruutuun "liikun" ja jälkimmäinen lisää ihmisen 
+ikää yhdellä vuodella. Huomioi, että Liiku-metodi ja Ikä-ominaisuus on Nisakas-luokassa
+
+Peri Ihminen-luokasta Vauva- ja Aikuinen-luokat. Ylikirjoita Vauva-luokassa yliluokan 
+Liiku-metodi tulostamaan "konttaa". Ylikirjoita Aikuinen-luokassa myös sama metodi ja
+laita se tulostamaan "kävelee". Lisää aikuiselle ominaisuus auto (String). Lisää 
+vauvalle ominaisuus vaippa (String).
+
+Toteuta pääohjelmassa muutamia ihmisiä, aikuisia ja vauvoja. Tulostele olioiden
+tietoja konsolille. 
+**/
+    abstract class Nisakas
+    {
+        public int Ika { get; set; }
+        public abstract void Liiku();
+    }
+    class Ihminen : Nisakas
+    {
+         
+        public string Nimi { get; set; }
+        public float Paino { get; set; }
+        public float Pituus { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("IKÄ: {0}     NIMI: {1}    PAINO: {2}    PITUUS: {3}", Ika, Nimi, Paino, Pituus);
+        }
+        public override void Liiku()
+        {
+            Console.WriteLine("Liikun");
+        }
+        public void Kasva()
+        {
+            Ika++;
+        }
+
+    }
+    class Vauva : Ihminen
+    {
+        public string Vaippa { get; set; }
+
+        public override void Liiku()
+        {
+            Console.WriteLine("Konttaa");
+        }
+        public override string ToString()
+        {
+            return base.ToString() + string.Format("    Vaippa: {0}", Vaippa);
+        }
+    }
+    class Aikuinen: Ihminen
+    {
+        public string Auto { get; set; }
+
+        public override void Liiku()
+        {
+            Console.WriteLine("Kävelee");
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + string.Format("    Auto: {0}", Auto);
+        }
+    }
+
 
 
 

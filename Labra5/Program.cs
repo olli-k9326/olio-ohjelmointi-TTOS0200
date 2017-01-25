@@ -13,6 +13,7 @@ namespace Olio_Labra5
         {
             //TestaaAuto();
             TestaaJaakaappi();
+            //TestaaNisakas();
 
         }
 
@@ -38,21 +39,68 @@ namespace Olio_Labra5
         }
         static void TestaaJaakaappi()
         {
-            Jaakaappi Rosenlew = new Jaakaappi("Rosenlew", 75);
-            Elintarvike Maito1 = new Elintarvike("Maito", "Valio", 1.5f);
-            Elintarvike Liha1 = new Elintarvike("Jauheliha, nauta", "Atria", 0.9f);
+            Jaakaappi rosenlew = new Jaakaappi("Rosenlew", 75);
+            Elintarvike maito1 = new Elintarvike("Maito", "Valio", 1.5f);
+            Elintarvike liha1 = new Elintarvike("Jauheliha, nauta", "Atria", 0.9f);
+            Elintarvike pepsi = new Elintarvike("Juoma", "Pepsi", 1.5f);
             for (int i = 0; i < 20; i++)
             {
-                Rosenlew.LisaaElintarvike(Maito1);
+                rosenlew.LisaaElintarvike(maito1);
             }
             for (int i = 0; i < 20; i++)
             {
-                Rosenlew.LisaaElintarvike(Liha1);
+                rosenlew.LisaaElintarvike(liha1);
             }
-            Console.WriteLine(Rosenlew.TilaaJaljella);
-            Console.WriteLine(Rosenlew.Tilavuus);
-            Console.WriteLine(Rosenlew.ToString());
+            for (int i = 0; i < 50; i++)
+            {
+                rosenlew.LisaaElintarvike(pepsi);
+                if (rosenlew.Onnistuiko == false)
+                {
+                    Console.WriteLine("Eipäs taida mahtua enempää tavaraa jääkaappiin. Voihan voi.");
+                    break;
+                }
+            }
+            Console.WriteLine(rosenlew.TilaaJaljella);
+            Console.WriteLine(rosenlew.Tilavuus);
+            Console.WriteLine(rosenlew.ToString());
         }
+        static void TestaaNisakas()
+        {
+            Ihminen homoSapiens1 = new Ihminen();
+            Aikuinen hemmo = new Aikuinen();
+            Vauva vauva1 = new Vauva();
+            Aikuinen hemmo2 = new Aikuinen();
+
+            hemmo.Ika = 23;
+            hemmo.Nimi = "Jeesus";
+            hemmo.Paino = 80;
+            hemmo.Pituus = 180;
+            hemmo.Auto = "BMW 520";
+            
+            vauva1.Ika = 1;
+            vauva1.Nimi = "Mooses Pessi";
+            vauva1.Paino = 80;
+            vauva1.Pituus = 180;
+            vauva1.Vaippa = "Pampers 47";
+
+            Console.WriteLine(hemmo.ToString());
+            Console.WriteLine(vauva1.ToString());
+            
+
+            hemmo.Liiku();
+            vauva1.Liiku();
+            homoSapiens1.Liiku();
+            Console.WriteLine(vauva1.Ika);
+            vauva1.Kasva();
+            vauva1.Kasva();
+            vauva1.Kasva();
+            Console.WriteLine(vauva1.Ika);
+
+
+
+        }
+
+
     }
 
 
