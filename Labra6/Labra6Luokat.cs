@@ -191,7 +191,7 @@ korttipakan sekoittamisen?
 
         
 
-        public override string ToString()
+        public override string ToString() 
         {
             string s = "Korttipakan kortit: \n===================";
             int korttiNro = 1;
@@ -217,6 +217,14 @@ korttipakan sekoittamisen?
                 pakka[y] = temp;
             }
         }
+
+    }
+    public class Pelaaja
+    {
+        
+    }
+    public class Pelaajat
+    {
 
     }
     

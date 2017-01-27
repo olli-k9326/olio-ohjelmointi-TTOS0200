@@ -13,7 +13,8 @@ namespace JAMK.IT.Henkilorekisteri
         {
             //TestaaHenkilorekisteri();
             //TestaaCD();
-            TestaaKorttipakka();
+            // TestaaKorttipakka();
+            JypRekisteri();
         }
 
         static void TestaaHenkilorekisteri()
@@ -70,11 +71,11 @@ namespace JAMK.IT.Henkilorekisteri
         static void TestaaKorttipakka()
         {
             Korttipakka pakka = new Korttipakka();
-            for (int i = 2; i <= 14; i++)
+            for (int arvo = 2; arvo <= 14; arvo++)
             {
-                for (int j = 0; j < 4; j++)
+                for (int maa = 0; maa < 4; maa++)
                 {
-                    Kortti kortti = new Kortti((Kortti.KorttiMaa)j, i);
+                    Kortti kortti = new Kortti((Kortti.KorttiMaa)maa, arvo);
                     pakka.LisaaKortti(kortti);
                 }
             }
@@ -84,6 +85,13 @@ namespace JAMK.IT.Henkilorekisteri
             Console.WriteLine(pakka.ToString());
             
         }
+        static void JypRekisteri()
+        {
+            Pelaaja pelaaja = new Pelaaja();
+            
+        }
+
+
     }
     
 }
