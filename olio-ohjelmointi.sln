@@ -53,7 +53,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olio_Labra5", "Labra5\Olio_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labra6", "Labra6\Labra6.csproj", "{54937AE9-BE26-4F2D-899D-197EFCC03A25}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{E35B270C-699E-4AD5-B241-5D1EA95A86F2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "uusikansio", "uusikansio", "{E35B270C-699E-4AD5-B241-5D1EA95A86F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,6 +167,5 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EB727D1C-C2CA-4EF6-9231-1D33E52EB303} = {E35B270C-699E-4AD5-B241-5D1EA95A86F2}
-		{87E18047-5B2C-410C-AA1B-099EAB309D84} = {E35B270C-699E-4AD5-B241-5D1EA95A86F2}
 	EndGlobalSection
 EndGlobal
