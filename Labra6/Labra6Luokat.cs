@@ -188,9 +188,7 @@ korttipakan sekoittamisen?
         {
             pakka.Add(kortti);
         }
-
         
-
         public override string ToString() 
         {
             string s = "Korttipakan kortit: \n===================";
@@ -227,7 +225,137 @@ korttipakan sekoittamisen?
     {
 
     }
+
+    public class Person
+    {
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+
+        public Person()
+        {
+        }
+        public Person (string firstname, string lastname)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+        }
+        public void Randomize(int firstLength, int lastLength, Random r)
+        {
+            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Firstname = "";
+            Lastname = "";
+            for (int i = 0; i < firstLength; i++)  // satunnainen etunimi
+            {
+                Firstname += alphabet[r.Next(0, alphabet.Length)];
+            }
+            for (int i = 0; i < lastLength; i++)    // satunnainen sukunimi
+            {
+                Lastname += alphabet[r.Next(0, alphabet.Length)];
+            }
+        }
+
+        public override string ToString()
+        {
+            return Firstname + " " + Lastname;
+        }
+       
+
+    }
+
+    public class PersonList
+    {
+        private List<Person> persons;
+        
+        public List<Person> Persons
+        {
+            get { return persons; }
+        }
+
+        public PersonList()
+        {
+            persons = new List<Person>();
+            
+        }
+        
+
+        public void AddPerson(Person person)
+        {
+            persons.Add(person);
+        }
+
+        public Person FindPersonsByFirstName(string firstname)
+        {
+            foreach(Person person in persons)
+            {
+                if(person.Firstname == firstname)
+                {
+                    return person;
+                }
+            }
+            return null;
+            
+        }
+
+        public override string ToString()
+        {
+            string s = "Persons in collection:";
+            foreach(Person person in persons)
+            {
+                s += "\n" + person.ToString();
+            }
+            return s;
+        }
+
+
+    }
     
+    public class PersonDictionary
+    {
+        private Dictionary<string, Person> persons;
+        
+        public Dictionary<string, Person> Persons
+        {
+            get { return persons; }
+        }
+
+        public PersonDictionary()
+        {
+            persons = new Dictionary<string, Person>();
+            
+        }
+        
+
+        public void AddPerson(Person person)
+        {
+            if (persons.ContainsKey(person.Firstname) == false)
+                persons.Add(person.Firstname, person);
+        }
+
+        public Person FindPersonsByFirstName(string firstname)
+        {
+
+            if (persons.ContainsKey(firstname))
+            {
+                return persons[firstname];
+            }
+            else
+                return null;
+
+        }
+
+        public override string ToString()
+        {
+            string s = "Persons in collection:";
+            foreach( Person person in persons.Values)
+            {
+                s += "\n" + person.ToString();
+            }
+            return s;
+        }
+
+
+    }
     
+
 
 }
