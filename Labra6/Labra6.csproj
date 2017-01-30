@@ -51,7 +51,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="pics\Labra6_T2.class.violet.html" />
+    <Content Include="pics2\Labra6_T2.class.violet.html" />
+    <Content Include="pics2\labra6_uml.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
