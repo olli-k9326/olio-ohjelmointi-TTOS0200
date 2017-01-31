@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using System.IO;
 namespace JAMK.IT
 {
+    
     class Program
     {
         static void Main(string[] args)
         {
-            //TiedostoKirjoitus_T1();
-            Tiedostoluku_T2();
+            // TiedostoKirjoitus_T1();
+            // Tiedostoluku_T2();
+            // luvutTiedostoihin_T3();
+            oliotLevylle_T4();
         }
 
         /*
@@ -129,10 +132,10 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
 
                 if (File.Exists(filepath) == false)
                 {
-                    Directory.CreateDirectory(fileFolder);
-                    File.Create(filepath);
+                    Directory.CreateDirectory(fileFolder);  //luodaan kansio
+                   
+                    randomNames(filepath, 100);         // täytetään nimet.txt nimillä
                     
-                    return;
                 }
 
                 fileContent = File.ReadAllLines(filepath);
@@ -148,11 +151,12 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
                         hlot.Add(line, 1);
                     }
                 }
-
+                var hlotList = hlot.Keys.ToList();
+                hlotList.Sort();
                 Console.WriteLine("Löytyi {0} riviä ja {1} nimeä", fileContent.Length, hlot.Count);
-                foreach (string hlo in hlot.Keys)
+                foreach (string hlo in hlotList)
                 {
-                    Console.WriteLine("Nimi: {0}   lkm: {1}", hlo, hlot[hlo]);
+                    Console.WriteLine("Nimi: {0,-10}   lkm: {1}", hlo, hlot[hlo]);
                 }
             }
             catch (Exception ex)
@@ -162,12 +166,117 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
             }
 
         }
-        static void randomNames()
+        static void randomNames(string filepath, int amount)
         {
-
-            
+            StreamWriter outputFile = new StreamWriter(filepath);
+            string[] randNames = File.ReadAllLines("randNames.txt");
+            Random r = new Random();
+            for (int i = 0; i < amount; i++)
+            {
+                outputFile.WriteLine(randNames[r.Next(0, randNames.Length)]);
+            }
+            outputFile.Close();
+            return;
 
         }
-        
+    /*
+     *Tehtävä 3 - luvut tiedostoihinhome Kotitehtävä
+
+    Tee ohjelma, joka kysyy käyttäjältä lukuja (joko kokonaisluku tai reaaliluku) ja tallenna
+    kokonaisluvut eri tiedostoon kuin reaaliluvut. Sovellus tulee lopettaa, jos käyttäjä ei 
+    syötä kokonais- tai reaalilukua. Tarkista tiedostojen sisältö jollain tekstieditorilla.
+
+    Esimerkkitulostus:
+
+
+    Give a number (enter or not a number ends) : 1,0
+    Give a number (enter or not a number ends) : 2,0
+    Give a number (enter or not a number ends) : 3,0
+    Give a number (enter or not a number ends) : 4
+    Give a number (enter or not a number ends) : 5
+    Give a number (enter or not a number ends) : 6
+    Give a number (enter or not a number ends) :
+    
+    Contents of T2Integers.txt:
+    4
+    5
+    6
+
+    Contents of T2Doubles.txt:
+    1,0
+    2,0
+    3,0
+    */   
+    
+        static void luvutTiedostoihin_T3()
+        {
+            bool gimmeNumbers = true;
+            string input;
+            string fileContent1;
+            string fileContent2;
+            string filename1 = "kokonais.txt";
+            string filename2 = "reaali.txt";
+            int temp1;
+            float temp2;
+            try
+            {
+
+                StreamWriter outputFile1 = new StreamWriter(filename1);
+                StreamWriter outputFile2 = new StreamWriter(filename2);
+                do
+                {
+                    Console.Write("Give me a number (Enter or not number ends) : ");
+                    input = Console.ReadLine();
+
+                    if (Int32.TryParse(input, out temp1) == true)
+                    {
+                        outputFile1.WriteLine(input);
+                    }
+                    else if (float.TryParse(input, out temp2) == true)
+                    {
+                        outputFile2.WriteLine(input);
+                    }
+                    else
+                    {
+                        gimmeNumbers = false;
+                    }
+
+                } while (gimmeNumbers);
+
+                outputFile1.Close();
+                outputFile2.Close();
+                fileContent1 = File.ReadAllText(filename1);
+                fileContent2 = File.ReadAllText(filename2);
+
+                Console.WriteLine("Contents of {0}", filename1);
+                Console.WriteLine(fileContent1);
+                Console.WriteLine("\nContents of {0}", filename2);
+                Console.WriteLine(fileContent2);
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+        }
+        /*
+        Tehtävä 4 - oliot levyllehome Kotitehtävä
+
+        Tee ohjelma, jossa voidaan käsitellä TV-ohjelmia. TV-ohjelman tietoina tulee käsitellä: 
+        ohjelman nimi, kanava (jolta ohjelma tulee), alku- ja loppuaika sekä pienimuotoinen 
+        infoteksti ohjelmasta. Luo pääohjelmassa muutamia TV-ohjelmaolioita (tiedot voit alustaa
+        suoraan koodista, ei tarvitse kysyä käyttäjältä) ja tallenna ne levylle. Mieti käytätkö 
+        jotain tietorakennetta apunasi. Toteuta ohjelmaan myös tiedostonlukeminen ja tulosta
+        TV-oliot näkyville. 
+        */    
+        static void oliotLevylle_T4()
+        {
+            TvOhjelma ohjelma1 = new TvOhjelma("Pikkukakkonen", "TV1", "11:00", "11:30", "Pikkukakkosessa ransulla on taas vauhti päällä");
+            TvOhjelma ohjelma2 = new TvOhjelma("Uutiset", "TV1", "18:00", "18:30", "Klo 18 uutiset. Tsekataan mitä maailmalla on tapahtunu");
+            TvOhjelma ohjelma3 = new TvOhjelma("Vain Elämää", "Nelonen", "18:00", "19:30", "Nyt on Cheekin päivä.");
+            TvOhjelma ohjelma4 = new TvOhjelma("Ennätystehdas", "Mtv3", "19:00", "19:30", "Kokiksen juonti mahdollisimman nopeasti, kuinka käy?");
+            
+        }
+         
     }
 }
