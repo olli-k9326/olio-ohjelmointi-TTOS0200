@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace JAMK.IT
 {
     
@@ -210,7 +212,7 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
     
         static void luvutTiedostoihin_T3()
         {
-            bool gimmeNumbers = true;
+            bool inputIsNumber = true;
             string input;
             string fileContent1;
             string fileContent2;
@@ -238,13 +240,16 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
                     }
                     else
                     {
-                        gimmeNumbers = false;
+                        inputIsNumber = false;
                     }
 
-                } while (gimmeNumbers);
+                } while (inputIsNumber);
 
                 outputFile1.Close();
                 outputFile2.Close();
+
+                // printing filecontents to screen
+
                 fileContent1 = File.ReadAllText(filename1);
                 fileContent2 = File.ReadAllText(filename2);
 
@@ -271,11 +276,42 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
         */    
         static void oliotLevylle_T4()
         {
-            TvOhjelma ohjelma1 = new TvOhjelma("Pikkukakkonen", "TV1", "11:00", "11:30", "Pikkukakkosessa ransulla on taas vauhti päällä");
-            TvOhjelma ohjelma2 = new TvOhjelma("Uutiset", "TV1", "18:00", "18:30", "Klo 18 uutiset. Tsekataan mitä maailmalla on tapahtunu");
-            TvOhjelma ohjelma3 = new TvOhjelma("Vain Elämää", "Nelonen", "18:00", "19:30", "Nyt on Cheekin päivä.");
-            TvOhjelma ohjelma4 = new TvOhjelma("Ennätystehdas", "Mtv3", "19:00", "19:30", "Kokiksen juonti mahdollisimman nopeasti, kuinka käy?");
-            
+            try
+            {
+                // creating programs
+                TvOhjelma ohjelma1 = new TvOhjelma("Pikkukakkonen", "TV1", "11:00", "11:30", "Pikkukakkosessa ransulla on taas vauhti päällä");
+                TvOhjelma ohjelma2 = new TvOhjelma("Uutiset", "TV1", "18:00", "18:30", "Klo 18 uutiset. Tsekataan mitä maailmalla on tapahtunu");
+                TvOhjelma ohjelma3 = new TvOhjelma("Vain Elämää", "Nelonen", "18:00", "19:30", "Nyt on Cheekin päivä.");
+                TvOhjelma ohjelma4 = new TvOhjelma("Ennätystehdas", "Mtv3", "19:00", "19:30", "Kokiksen juonti mahdollisimman nopeasti, kuinka käy?");
+                List<TvOhjelma> TvOhjelmat = new List<TvOhjelma>();
+                List<TvOhjelma> LueTvOhjelmat = new List<TvOhjelma>();
+                TvOhjelmat.Add(ohjelma1);
+                TvOhjelmat.Add(ohjelma2);
+                TvOhjelmat.Add(ohjelma3);
+                TvOhjelmat.Add(ohjelma4);
+
+                // writing to file
+                Stream writeStream = new FileStream("TvOhjelmat.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(writeStream, TvOhjelmat);
+                writeStream.Close();
+
+                // reading frome file
+                Stream readStream = new FileStream("TvOhjelmat.bin", FileMode.Open, FileAccess.Read, FileShare.None);
+                TvOhjelmat = (List<TvOhjelma>)formatter.Deserialize(readStream);
+
+                // printing to screen
+                foreach (TvOhjelma ohjelma in TvOhjelmat)
+                {
+                    Console.WriteLine(ohjelma.ToString());
+                    Console.WriteLine();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
         }
          
     }

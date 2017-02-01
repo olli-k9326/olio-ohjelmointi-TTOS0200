@@ -22,6 +22,13 @@ namespace JAMK.IT
             Alku = alku;
             Loppu = loppu;
             Info = info;
-    }
+        }
+
+        public override string ToString()
+        {
+            string s = string.Format("Nimi: {0}, Kanava: {1}\nLähetysaika: {2} - {3}\nInfo: {4}", Nimi, Kanava, Alku, Loppu, Info);
+            return s;
+        }
+
     }
 }
