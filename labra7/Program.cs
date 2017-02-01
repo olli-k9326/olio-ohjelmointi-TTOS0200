@@ -14,9 +14,9 @@ namespace JAMK.IT
         static void Main(string[] args)
         {
             // TiedostoKirjoitus_T1();
-            // Tiedostoluku_T2();
+            Tiedostoluku_T2();
             // luvutTiedostoihin_T3();
-            oliotLevylle_T4();
+            //oliotLevylle_T4();
         }
 
         /*
@@ -46,13 +46,14 @@ namespace JAMK.IT
     */
         static void TiedostoKirjoitus_T1()
         {
+            StreamWriter outputFile = null;
             bool gimmeLines = true;
             string input;
             string fileContent;
             string filename = "teht1";
             try
             {
-                StreamWriter outputFile = new StreamWriter(filename);
+                outputFile = new StreamWriter(filename);
 
                 do
                 {
@@ -77,6 +78,11 @@ namespace JAMK.IT
             {
 
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (outputFile != null)
+                    outputFile.Close();
             }
         }
 
@@ -120,7 +126,7 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
 	Nimi Wille esiintyy 4 kertaa
 	Press any key to continue . . .
     */
-        static void Tiedostoluku_T2()
+        static void Tiedostoluku_T2() //YauSollerS
         {
             string filename = "nimet.txt";
             string fileFolder = @"C:\Temp\";
@@ -163,22 +169,31 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine("jokin meni pieleen");
                 Console.WriteLine(ex.Message);
             }
 
         }
         static void randomNames(string filepath, int amount)
         {
-            StreamWriter outputFile = new StreamWriter(filepath);
-            string[] randNames = File.ReadAllLines("randNames.txt");
-            Random r = new Random();
-            for (int i = 0; i < amount; i++)
+            try
             {
-                outputFile.WriteLine(randNames[r.Next(0, randNames.Length)]);
+                StreamWriter outputFile = new StreamWriter(filepath);
+
+                string[] randNames = File.ReadAllLines("randNames.txt");
+                Random r = new Random();
+                for (int i = 0; i < amount; i++)
+                {
+                    outputFile.WriteLine(randNames[r.Next(0, randNames.Length)]);
+                }
+                outputFile.Close();
+
+                return;
             }
-            outputFile.Close();
-            return;
+            catch (Exception)
+            {
+                throw;
+            }
 
         }
     /*
@@ -212,6 +227,8 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
     
         static void luvutTiedostoihin_T3()
         {
+            StreamWriter outputFile1 = null;
+            StreamWriter outputFile2 = null;
             bool inputIsNumber = true;
             string input;
             string fileContent1;
@@ -223,8 +240,8 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
             try
             {
 
-                StreamWriter outputFile1 = new StreamWriter(filename1);
-                StreamWriter outputFile2 = new StreamWriter(filename2);
+                 outputFile1 = new StreamWriter(filename1);
+                 outputFile2 = new StreamWriter(filename2);
                 do
                 {
                     Console.Write("Give me a number (Enter or not number ends) : ");
@@ -263,6 +280,14 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
 
                 Console.WriteLine(ex.Message);
             }
+            finally
+            {
+                if (outputFile1 != null)
+                    outputFile1.Close();
+
+                if (outputFile2 != null)
+                    outputFile2.Close();
+            }
         }
         /*
         Tehtävä 4 - oliot levyllehome Kotitehtävä
@@ -278,6 +303,9 @@ Bonustehtävä: Lajittele nimet aakkosjärjestykseen ennen tulostusta.
         {
             try
             {
+                //LuoTVohjelmat
+                // Hakee TVohjelmat
+
                 // creating programs
                 TvOhjelma ohjelma1 = new TvOhjelma("Pikkukakkonen", "TV1", "11:00", "11:30", "Pikkukakkosessa ransulla on taas vauhti päällä");
                 TvOhjelma ohjelma2 = new TvOhjelma("Uutiset", "TV1", "18:00", "18:30", "Klo 18 uutiset. Tsekataan mitä maailmalla on tapahtunu");
