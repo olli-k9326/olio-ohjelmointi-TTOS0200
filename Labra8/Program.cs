@@ -10,10 +10,12 @@ namespace JAMK.IT
     {
         static void Main(string[] args)
         {
-            //TestaaNoppa();
-            Ostoskarry();
-
-        }
+            //TestaaNoppa();  Kesken !!!!!!!
+            //Ostoskarry();
+            //TestFishReg();
+            //ShapesAndLists();
+            ArrayCalcs_T5();
+    }
 
         /*
          Tehtävä 1 - Noppa home Kotitehtävä
@@ -48,7 +50,7 @@ Esimerkkitulostus:
 
     Press enter key to continue...
     */
-    public static void TestaaNoppa()
+        public static void TestaaNoppa()
         {
             string input;
             float x = (float)3 / 2;
@@ -98,7 +100,7 @@ Esimerkkitulostus:
     
     Press enter key to continue...
     */
-    public static void Ostoskarry()
+        public static void Ostoskarry()
         {
             string input;
             float price;
@@ -187,6 +189,112 @@ Esimerkkitulostus:
      
     Press enter key to continue...   
     */
+        public static void TestFishReg()
+        {
+            FishRegister register = new FishRegister("JKL register");
+            FishingLocation location1 = new FishingLocation { Place = "The Lake of Jyväskylä", Location = "Jyväskylä" };
+            FishingLocation location2 = new FishingLocation { Place = "Nilakka", Location = "Pohjois-Savo" };
+            Fish fish1 = new Fish { Specie = "salmon", Length = 25, Weigth = 3.382f, FLocation = location1 };
+            Fish fish2 = new Fish { Specie = "trout", Length = 65, Weigth = 7.382f, FLocation = location2 };
+            Fisher fisher1 = new Fisher { SSN = "190282-102I", Name = "Matti Maila", Phonenumber = "030 388 9203" };
+            Fisher fisher2 = new Fisher { SSN = "200282-122K", Name = "Pasi Kiisseli", Phonenumber = "003 328 9213" };
 
+            Console.WriteLine( register.AddFisher(fisher1) );
+            Console.WriteLine();
+            Console.WriteLine( register.AddFish(fisher1, fish1) );
+            Console.WriteLine();
+            Console.WriteLine(register.AddFisher(fisher2));
+            Console.WriteLine();
+            Console.WriteLine(register.AddFish(fisher2, fish2));
+            Console.WriteLine();
+            Console.WriteLine(register.AddFish(fisher2, fish1));
+            Console.WriteLine();
+            Console.WriteLine(register.ToString());
+            
+        }
+
+        /*
+         Tehtävä 4 - Kuviot home Kotitehtävä
+
+Toteuta sovellus, jolla voidaan käsitellä erilaisia kuviota (esim. Circle ja Rectangle). 
+Laadi erillinen abstrakti Shape-luokka, josta muut kuviot peryityvät. Määrittele Shape-luokan
+ominaisuutena kuvion nimi (Name) ja abstraktit Area- ja Circumference-metodit (pinta-ala ja 
+ympärysmitta). Peri Circle- ja Rectangle-luokat Shape-luokasta ja toteuta Area- ja 
+Circumference-metodit. Luo Shapes-luokka ja sen sisälle List-tietorakenne, jonne voit aina 
+lisätä kuvioita. Toteuta pääohjelma, jossa käytät Shapes-luokkaa, luo muutamia eri kuviota ja 
+lisää ne Shapes-luokassa olevaan List-tietorakenteeseen. Käy pääohjelmassa lopuksi läpi 
+Shapes-luokan List-tietorakenne ja tulosta kaikki sen sisältämät kuviot.
+
+Esimerkkitulostus:
+
+
+    Circle Radius=1 Area=3,14 Circumference=7,28
+    Circle Radius=2 Area=12,57 Circumference=12,56
+    Circle Radius=3 Area=28,27 Circumference=18,84
+    Rectangle Width=10 Height=20 Area=200,00 Circumference=60,00
+    Rectangle Width=20 Height=30 Area=600,00 Circumference=100,00
+    Rectangle Width=40 Height=50 Area=2000,00 Circumference=180,00
+
+    Press enter key to continue...
+    */
+        public static void ShapesAndLists()
+        {
+            Circle circle1 = new Circle { Radius = 3.245f };
+            Circle circle2 = new Circle { Radius = 7.745f };
+            Circle circle3 = new Circle { Radius = 5.245f };
+            Rectangle rectangle1 = new Rectangle { Width = 2.34f, Heigth = 4.623f };
+            Rectangle rectangle2 = new Rectangle { Width = 10.34f, Heigth = 2.34f };
+            Rectangle rectangle3 = new Rectangle { Width = 5.23f, Heigth = 7.23f };
+            Shapes shapes = new Shapes();
+            shapes.AddShape(circle1);
+            shapes.AddShape(circle2);
+            shapes.AddShape(circle3);
+            shapes.AddShape(rectangle1);
+            shapes.AddShape(rectangle2);
+            shapes.AddShape(rectangle3);
+
+            
+            Console.WriteLine(shapes.ToString());
+
+        }
+        /*
+Tehtävä 5 - Laskutoimituksia ja yksikkötestaus home Kotitehtävä
+
+Toteuta ArrayCalcs-niminen luokka ja sen sisälle seuraavat staattiset-metodit: Sum, Average, Min
+ja Max. Metodit ottavat parametriksi double[]-taulukon ja laskevat nimensä mukaisen 
+laskutoimintuksen taulukon alkioille ja palauttavat tuloksen kutsuvalle ohjelmalle.
+
+Toteuta pääohjelma ja esimerkiksi seuraavaa dataa sisältävä taulukko:
+double[] array = { 1.0, 2.0, 3.3, 5.5, 6.3, -4.5, 12.0 }; Kutsu pääohjelmasta
+ArrayCalcs-luokan staattisia laskutoimituksia tekeviä metodeja annetun taulukon 
+arvoilla ja tulosta tulokset näyttölaitteelle.
+
+Esimerkkitulostus:
+
+
+    Sum = 25,60
+    Ave = 3,66
+    Min = -4,50
+    Max = 12,00
+
+    Press enter key to continue...    
+    
+
+ArrayCalcs-luokan metodien testaaminen
+
+Toteuta solutioniin uusi yksikkötestaukseen liittyvä projekti ja testaa ArrayCalcs-luokan
+kaikki metodit.
+Kuinka ArrayCalcs-luokan metodit toimivat, jos välität parametrina tyhjän
+double[]-taulukon: double[] array = { }; 
+*/
+        public static void ArrayCalcs_T5()
+        {
+            double[] array = { 1.0, 2.0, 3.3, 5.5, 6.3, -4.5, 12.0 };
+            //double[] array = { };
+            Console.WriteLine("Sum = " + Math.Round(ArrayCalcs.Sum(array),2));
+            Console.WriteLine("Ave = " + Math.Round(ArrayCalcs.Average(array),2));
+            Console.WriteLine("Min = " + Math.Round(ArrayCalcs.Min(array),2));
+            Console.WriteLine("Max = " + Math.Round(ArrayCalcs.Max(array),2));
+        }
     }
 }
