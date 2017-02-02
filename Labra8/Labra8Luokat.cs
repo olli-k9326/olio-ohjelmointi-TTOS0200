@@ -318,5 +318,50 @@ namespace JAMK.IT
             return numTable.Max();
         }
     }
+    public class InvoiceItem
+    {
+        public string Name { get; set; }
+        private double price;
+        private int quantity;
+        public double Price
+        {
+            get { return price; }
+            set
+            {
+                price = value;
+                Total = price * quantity;
+            }
+        }
+        public int Quantity
+        {
+            get { return quantity; }
+            set
+            {
+                quantity = value;
+                Total = price * quantity;
+            }
+        }
+        public double Total { get; set; }
+        public InvoiceItem()
+        {
+
+        }
+        public InvoiceItem(string name, double price, int quantity)
+        {
+            Name = name;
+            Price = price;
+            Quantity = quantity;
+            Total = Price * Quantity;
+        }
+    }
+    public class Invoice
+    {
+        public string Customer { get; set; }
+        public List<InvoiceItem> Items;
+        public double Total { get; set; }
+
+
+
+    }
 
 }
