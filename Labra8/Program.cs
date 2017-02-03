@@ -10,11 +10,12 @@ namespace JAMK.IT
     {
         static void Main(string[] args)
         {
-            //TestaaNoppa();  Kesken !!!!!!!
-            //Ostoskarry();
+            //TestaaNoppa();  
+            Ostoskarry();
             //TestFishReg();
             //ShapesAndLists();
-            ArrayCalcs_T5();
+            //ArrayCalcs_T5();
+            //InvoiceTest();
     }
 
         /*
@@ -52,34 +53,35 @@ Esimerkkitulostus:
     */
         public static void TestaaNoppa()
         {
-            string input;
-            float x = (float)3 / 2;
-            Console.WriteLine(x);
-            int throws;
-            int diceMin = 1;
-            int diceMax = 6;
-            int[] diceValues = new int[diceMax];
-            Dice dice = new Dice(diceMin, diceMax);
-            dice.ThrowDice();
-            Console.Write("How many times you want to throw a dice ? ");
-
-            input = Console.ReadLine();
-            while (int.TryParse(input, out throws) == false || throws == 0)
+            try
             {
-                Console.Write("Incorrect input. Insert again: ");
+                string input;
+                int throws;
+                int diceMin = 1;
+                int diceMax = 6;
+                Dice dice = new Dice(diceMin, diceMax);
+
+                Console.Write("How many times you want to throw a dice ? ");        // ask for throws
                 input = Console.ReadLine();
+
+                while (int.TryParse(input, out throws) == false || throws == 0) // check if correct input
+                {
+                    Console.Write("Incorrect input. Insert again: ");
+                    input = Console.ReadLine();
+                }
+
+                dice.ThrowDice(throws);
+
+                Console.WriteLine("Dice is now thrown {0} times", throws);
+                Console.WriteLine("Average is {0}", dice.DiceAverage().ToString("0.00"));
+                Console.WriteLine(dice.ToString());
             }
-            for (int i = 0; i < throws; i++)
+            catch (Exception ex)
             {
-                dice.ThrowDice();
+
+                Console.WriteLine(ex.Message);
             }
-
-            Console.WriteLine("Dice is now thrown {0} times", throws);
-            Console.WriteLine("Average is 3", dice.DiceAverage());
-            Console.WriteLine(dice.ToString());
-
-
-
+            
 
         }
         /*
@@ -102,36 +104,71 @@ Esimerkkitulostus:
     */
         public static void Ostoskarry()
         {
-            string input;
-            float price;
-            //Product product1 = new Product("Maito", 2.34f);
-            Product product;
-            Shoppingcart shoppingcart = new Shoppingcart();
-            Console.WriteLine("***OSTOSKÄRRISOVELLUS****");
-            do
+            try
             {
-                product = new Product("", 0);
-                Console.Write("Insert product: ");
-                input = Console.ReadLine();
-                if (input == "exit") continue;
-
-                product.Name = input;
-                Console.Write("Price : ");
-                input = Console.ReadLine();
-                if (input == "exit") continue;
-
-                while (float.TryParse(input, out price) == false || price < 0)
+                //Product product1 = new Product("Maito", 2.34f);
+                Product product;
+                Shoppingcart shoppingcart = new Shoppingcart();
+                Console.WriteLine("***OSTOSKÄRRISOVELLUS****");
+                do
                 {
-                    Console.Write("Incorrect input. Insert again: ");
-                    input = Console.ReadLine();
-                }
-                product.Price = price;
-                shoppingcart.AddProduct(product);
-                Console.WriteLine();
-            } while (input != "exit");
-            
-            Console.WriteLine(shoppingcart.ToString());
+                    product = new Product("", 0);
+
+                    if (AskInput(product, "Product") == false)
+                        break;
+
+                    if (AskInput(product, "Price") == false)
+                        break;
+                    
+                    shoppingcart.AddProduct(product);  // add product to cart
+                    Console.WriteLine();
+
+                } while (true);
+
+                Console.WriteLine(shoppingcart.ToString());
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
         }
+        public static bool AskInput(Product product, string property)
+        {
+            try
+            {
+                string input;
+                float price;
+                Console.Write(property + ": ");      // ask for product
+                input = Console.ReadLine();
+
+                if (input == "exit")
+                    return false;
+
+
+                if (property == "Product")
+                {
+                    product.Name = input;
+                }
+                else if (property == "Price")
+                {
+                    while (float.TryParse(input, out price) == false || price < 0)  // handle incorrect input
+                    {
+                        Console.Write("Incorrect input. Insert again: ");
+                        input = Console.ReadLine();
+                    }
+                    product.Price = price;
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         /*
          Tehtävä 3 - Kalat home Kotitehtävä
 Toteuta sovellus, jossa voit hallita kalastukseen liittyviä tietoja. Ohjelman pitää 
@@ -191,26 +228,34 @@ Esimerkkitulostus:
     */
         public static void TestFishReg()
         {
-            FishRegister register = new FishRegister("JKL register");
-            FishingLocation location1 = new FishingLocation { Place = "The Lake of Jyväskylä", Location = "Jyväskylä" };
-            FishingLocation location2 = new FishingLocation { Place = "Nilakka", Location = "Pohjois-Savo" };
-            Fish fish1 = new Fish { Specie = "salmon", Length = 25, Weigth = 3.382f, FLocation = location1 };
-            Fish fish2 = new Fish { Specie = "trout", Length = 65, Weigth = 7.382f, FLocation = location2 };
-            Fisher fisher1 = new Fisher { SSN = "190282-102I", Name = "Matti Maila", Phonenumber = "030 388 9203" };
-            Fisher fisher2 = new Fisher { SSN = "200282-122K", Name = "Pasi Kiisseli", Phonenumber = "003 328 9213" };
+            try
+            {
+                FishRegister register = new FishRegister("JKL register");
+                FishingLocation location1 = new FishingLocation { Place = "The Lake of Jyväskylä", Location = "Jyväskylä" };
+                FishingLocation location2 = new FishingLocation { Place = "Nilakka", Location = "Pohjois-Savo" };
+                Fish fish1 = new Fish { Specie = "salmon", Length = 25, Weigth = 3.382f, FLocation = location1 };
+                Fish fish2 = new Fish { Specie = "trout", Length = 65, Weigth = 7.382f, FLocation = location2 };
+                Fisher fisher1 = new Fisher { SSN = "190282-102I", Name = "Matti Maila", Phonenumber = "030 388 9203" };
+                Fisher fisher2 = new Fisher { SSN = "200282-122K", Name = "Pasi Kiisseli", Phonenumber = "003 328 9213" };
 
-            Console.WriteLine( register.AddFisher(fisher1) );
-            Console.WriteLine();
-            Console.WriteLine( register.AddFish(fisher1, fish1) );
-            Console.WriteLine();
-            Console.WriteLine(register.AddFisher(fisher2));
-            Console.WriteLine();
-            Console.WriteLine(register.AddFish(fisher2, fish2));
-            Console.WriteLine();
-            Console.WriteLine(register.AddFish(fisher2, fish1));
-            Console.WriteLine();
-            Console.WriteLine(register.ToString());
-            
+                Console.WriteLine(register.AddFisher(fisher1));
+                Console.WriteLine();
+                Console.WriteLine(register.AddFish(fisher1, fish1));
+                Console.WriteLine();
+                Console.WriteLine(register.AddFisher(fisher2));
+                Console.WriteLine();
+                Console.WriteLine(register.AddFish(fisher2, fish2));
+                Console.WriteLine();
+                Console.WriteLine(register.AddFish(fisher2, fish1));
+                Console.WriteLine();
+                Console.WriteLine(register.ToString());
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         /*
@@ -239,22 +284,30 @@ Esimerkkitulostus:
     */
         public static void ShapesAndLists()
         {
-            Circle circle1 = new Circle { Radius = 3.245f };
-            Circle circle2 = new Circle { Radius = 7.745f };
-            Circle circle3 = new Circle { Radius = 5.245f };
-            Rectangle rectangle1 = new Rectangle { Width = 2.34f, Heigth = 4.623f };
-            Rectangle rectangle2 = new Rectangle { Width = 10.34f, Heigth = 2.34f };
-            Rectangle rectangle3 = new Rectangle { Width = 5.23f, Heigth = 7.23f };
-            Shapes shapes = new Shapes();
-            shapes.AddShape(circle1);
-            shapes.AddShape(circle2);
-            shapes.AddShape(circle3);
-            shapes.AddShape(rectangle1);
-            shapes.AddShape(rectangle2);
-            shapes.AddShape(rectangle3);
+            try
+            {
+                Circle circle1 = new Circle { Radius = 3.245f };
+                Circle circle2 = new Circle { Radius = 7.745f };
+                Circle circle3 = new Circle { Radius = 5.245f };
+                Rectangle rectangle1 = new Rectangle { Width = 2.34f, Heigth = 4.623f };
+                Rectangle rectangle2 = new Rectangle { Width = 10.34f, Heigth = 2.34f };
+                Rectangle rectangle3 = new Rectangle { Width = 5.23f, Heigth = 7.23f };
+                Shapes shapes = new Shapes();
+                shapes.AddShape(circle1);
+                shapes.AddShape(circle2);
+                shapes.AddShape(circle3);
+                shapes.AddShape(rectangle1);
+                shapes.AddShape(rectangle2);
+                shapes.AddShape(rectangle3);
 
-            
-            Console.WriteLine(shapes.ToString());
+
+                Console.WriteLine(shapes.ToString());
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
 
         }
         /*
@@ -289,12 +342,20 @@ double[]-taulukon: double[] array = { };
 */
         public static void ArrayCalcs_T5()
         {
-            double[] array = { 1.0, 2.0, 3.3, 5.5, 6.3, -4.5, 12.0 };
-            //double[] array = { };
-            Console.WriteLine("Sum = " + Math.Round(ArrayCalcs.Sum(array),2));
-            Console.WriteLine("Ave = " + Math.Round(ArrayCalcs.Average(array),2));
-            Console.WriteLine("Min = " + Math.Round(ArrayCalcs.Min(array),2));
-            Console.WriteLine("Max = " + Math.Round(ArrayCalcs.Max(array),2));
+            try
+            {
+                double[] array = { 1.0, 2.0, 3.3, 5.5, 6.3, -4.5, 12.0 };
+                //double[] array = { };
+                Console.WriteLine("Sum = " + Math.Round(ArrayCalcs.Sum(array), 2));
+                Console.WriteLine("Ave = " + Math.Round(ArrayCalcs.Average(array), 2));
+                Console.WriteLine("Min = " + Math.Round(ArrayCalcs.Min(array), 2));
+                Console.WriteLine("Max = " + Math.Round(ArrayCalcs.Max(array), 2));
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
         }
 
 /*
@@ -346,6 +407,33 @@ Invoice-luokan kokonaissumman (total) testaaminen
 
 Testaa yksikkötestauksen avulla, että laskulle määritelty kokonaissumma varmasti lasketaan oikein. 
 */
-        
+        public static void InvoiceTest()
+        {
+            try
+            {
+                InvoiceItem kalja1 = new InvoiceItem("Karhu-olut", 1.1, 24);
+                InvoiceItem makkara = new InvoiceItem("Wilhelm", 2.49, 4);
+                InvoiceItem hammastahna = new InvoiceItem("Pepsodent", 2.30, 1);
+                InvoiceItem kahvi1 = new InvoiceItem("Juhla Mokka", 3.30, 3);
+
+                Invoice invoice = new Invoice();
+                invoice.Customer = "Petri Heiskanen";
+                invoice.AddItem(kalja1);
+                invoice.AddItem(makkara);
+                invoice.AddItem(hammastahna);
+                invoice.AddItem(kahvi1);
+
+                Console.WriteLine("Olipas rismassa hyvät tarjoukset, tuli ostettua kunnon tavaraa");
+                Console.WriteLine("Tämmöinen kuitti tuli ostokista: ");
+                Console.WriteLine();
+                Console.WriteLine(invoice.PrintInvoice());
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+
+        }
     }
 }

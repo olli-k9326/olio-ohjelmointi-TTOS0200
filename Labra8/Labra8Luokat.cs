@@ -26,22 +26,9 @@ namespace JAMK.IT
                     diceValue = max;
             }
         }
-        private void addValuesToList(int x)
-        {
-            if (diceValues.ContainsKey(x))
-                diceValues[x]++;
-            
-        }
-        private void giveDiceValues(int Min, int Max)
-        {
-            diceValues = new Dictionary<int, int>();
-            for (int i = Min; i <= Max; i++)
-            {
-                diceValues.Add(i, 0);
-            }
-        }
         
-        public Dice(int Min, int Max)
+        
+        public Dice(int Min, int Max)       /// constructor ///
         {
             min = Min;
             max = Max;
@@ -51,21 +38,43 @@ namespace JAMK.IT
             giveDiceValues(Min, Max);
             
         }
-        public void ThrowDice()
+
+        //////// Methods //////////////////////
+
+        private void addValuesToDictionary(int x)
         {
-            diceValue = r.Next(min, max + 1);
-            addValuesToList(DiceValue);
+            if (diceValues.ContainsKey(x))
+                diceValues[x]++;
+        }
+
+        private void giveDiceValues(int Min, int Max)
+        {
+            diceValues = new Dictionary<int, int>();
+            for (int i = Min; i <= Max; i++)
+            {
+                diceValues.Add(i, 0);
+            }
+        }
+
+        public void ThrowDice(int throws)
+        {
+            for (int i = 0; i < throws; i++)
+            {
+                diceValue = r.Next(min, max + 1);
+                addValuesToDictionary(DiceValue);
+            }
+            
         }
         public float DiceAverage()
         {
             int sum = 0;
-            int n = 0;
-            for (int i = min; i <= max; i++)
+            int count = 0;
+            foreach(int key in diceValues.Keys)
             {
-                n += diceValues[i];
-                sum += (i * diceValues[i]);
+                sum += diceValues[key] * key;
+                count += diceValues[key];
             }
-            return (float)sum / n;
+            return (float)sum / count;
         }
         public override string ToString()
         {
@@ -353,12 +362,51 @@ namespace JAMK.IT
             Quantity = quantity;
             Total = Price * Quantity;
         }
+        public override string ToString()
+        {
+            string s = string.Format("{0, -15} {1,7} e {2,4} pcs {3,7} e", Name, price.ToString("0.00"), quantity, Total.ToString("0.00"));
+            return s;
+
+        }
     }
     public class Invoice
     {
         public string Customer { get; set; }
         public List<InvoiceItem> Items;
         public double Total { get; set; }
+        public Invoice()
+        {
+            Items = new List<InvoiceItem>();
+        }
+        public void AddItem(InvoiceItem item)
+        {
+            Items.Add(item);
+            CalculateTotal();
+        }
+        private void CalculateTotal()
+        {
+            double newTotal = 0;
+            foreach(InvoiceItem item in Items)
+            {
+                newTotal += item.Total;
+            }
+            Total = newTotal;
+        }
+        public string PrintInvoice()
+        {
+            string line = "\n========================================";
+            string s = string.Format("Customer {0} invoice:", Customer);
+            s += line;
+            foreach(InvoiceItem item in Items)
+            {
+                s += "\n" + item.ToString();
+            }
+            s += line;
+            s += string.Format("\nTotal : {0} euros", Total);
+
+            return s; 
+            
+        }
 
 
 
