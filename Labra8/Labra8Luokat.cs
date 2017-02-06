@@ -125,7 +125,7 @@ namespace JAMK.IT
         }
 
     }
-    class FishingLocation
+    class FishingLocation       // jomihaka
     {
         public string Place { get; set; }
         public string Location { get; set; }
