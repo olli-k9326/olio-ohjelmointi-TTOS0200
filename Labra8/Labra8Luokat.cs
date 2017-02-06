@@ -47,7 +47,7 @@ namespace JAMK.IT
                 diceValues[x]++;
         }
 
-        private void giveDiceValues(int Min, int Max)
+        private void giveDiceValues(int Min, int Max)   // Insert dice values at initialization
         {
             diceValues = new Dictionary<int, int>();
             for (int i = Min; i <= Max; i++)

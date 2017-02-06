@@ -236,7 +236,7 @@ Esimerkkitulostus:
                 Fish fish1 = new Fish { Specie = "salmon", Length = 25, Weigth = 3.382f, FLocation = location1 };
                 Fish fish2 = new Fish { Specie = "trout", Length = 65, Weigth = 7.382f, FLocation = location2 };
                 Fisher fisher1 = new Fisher { SSN = "190282-102I", Name = "Matti Maila", Phonenumber = "030 388 9203" };
-                Fisher fisher2 = new Fisher { SSN = "200282-122K", Name = "Pasi Kiisseli", Phonenumber = "003 328 9213" };
+                Fisher fisher2 = new Fisher { SSN = "200282-122K", Name = "Pasi Kiiphli", Phonenumber = "003 328 9213" };
 
                 Console.WriteLine(register.AddFisher(fisher1));
                 Console.WriteLine();
